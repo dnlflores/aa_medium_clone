@@ -70,18 +70,19 @@ const userValidators = [
 
 router.post('/register', csrfProtection, userValidators, asyncHandler(async function (req, res) {
   const { username, email, password } = req.body;
-  const hashedPassword = bcrypt.hash(password, 10);
+  const hashedPassword = await bcrypt.hash(password, 10);
   const user = await User.build({
     username,
     email
   });
   const validatorCheck = validationResult(req);
-  if(!validatorCheck) {
+  const errors = validatorCheck.array().map(error => error.msg);
+  if(!errors[0]) {
     user.hashedPassword = hashedPassword;
+    console.log(user.hashedPassword, hashedPassword);
     await user.save();
     res.redirect('/');
   } else {
-    const errors = validatorCheck.array().map(error => error.msg);
     res.render('user-create', {
       user,
       title: 'Register',
@@ -90,5 +91,7 @@ router.post('/register', csrfProtection, userValidators, asyncHandler(async func
     });
   }
 }));
+
+
 
 module.exports = router;
