@@ -92,6 +92,42 @@ router.post('/register', csrfProtection, userValidators, asyncHandler(async func
   }
 }));
 
+router.get('/login', csrfProtection, asyncHandler(async function (req, res, next) {
+  const user = await User.build();
+  res.render('user-login', {
+    user,
+    title: 'Login',
+    csrfToken: req.csrfToken()
+  });
+}));
 
+const userLoginValidators = [
+  
+];
+
+
+router.post('/register', csrfProtection, userLoginValidators, asyncHandler(async function (req, res) {
+  const { email, password } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const user = await User.build({
+    username,
+    email
+  });
+  const validatorCheck = validationResult(req);
+  const errors = validatorCheck.array().map(error => error.msg);
+  if(!errors[0]) {
+    user.hashedPassword = hashedPassword;
+    console.log(user.hashedPassword, hashedPassword);
+    await user.save();
+    res.redirect('/');
+  } else {
+    res.render('user-create', {
+      user,
+      title: 'Register',
+      errors,
+      csrfToken: req.csrfToken()
+    });
+  }
+}));
 
 module.exports = router;
