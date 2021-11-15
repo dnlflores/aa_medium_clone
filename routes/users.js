@@ -102,28 +102,50 @@ router.get('/login', csrfProtection, asyncHandler(async function (req, res, next
 }));
 
 const userLoginValidators = [
-  
+  check('email')
+    .exists({ checkFalsy: true })
+    .withMessage('Must include an email.')
+    .custom(value => {
+      return User.findOne({ where: { email: value } }).then((user) => {
+        if (!user) {
+          return Promise.reject(
+            "'Login credentials invalid.'"
+          );
+        }
+      }
+    )}),
+  check('password')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a password.')
 ];
 
 
-router.post('/register', csrfProtection, userLoginValidators, asyncHandler(async function (req, res) {
+router.post('/login', csrfProtection, userLoginValidators, asyncHandler(async function (req, res) {
   const { email, password } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const user = await User.build({
-    username,
+  const foundUser = await User.findOne({ where: { email } })
+  
+  const user = {
     email
-  });
+  };
+  
+  
   const validatorCheck = validationResult(req);
   const errors = validatorCheck.array().map(error => error.msg);
+  
   if(!errors[0]) {
-    user.hashedPassword = hashedPassword;
-    console.log(user.hashedPassword, hashedPassword);
-    await user.save();
-    res.redirect('/');
-  } else {
-    res.render('user-create', {
+    const hashedPassword = foundUser.hashedPassword;
+    const passwordTest = await bcrypt.compare(password, hashedPassword);
+    if(passwordTest) {
+      res.redirect('/');
+    } else {
+      errors.push('Login credentials invalid.')
+    }
+    //TO-DO
+  } 
+  if(errors[0]) {
+    res.render('user-login', {
       user,
-      title: 'Register',
+      title: 'Login',
       errors,
       csrfToken: req.csrfToken()
     });
