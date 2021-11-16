@@ -83,4 +83,6 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     });
 }));
 
+// router.post('/:id(\\d+)/delete');
+
 module.exports = router;
