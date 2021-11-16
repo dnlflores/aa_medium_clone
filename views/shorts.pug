@@ -5,7 +5,8 @@ block content
     each short in shorts
             div= short.title 
             a(href=`/shorts/${short.id}`) Go to short's page
-
+    div
+        p: a(href='/shorts/create') Create Short
     div
         p: a(href='/') Back to Home!
     
