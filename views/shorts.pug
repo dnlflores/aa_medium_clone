@@ -5,4 +5,8 @@ block content
     each short in shorts
             div= short.title 
             a(href=`/shorts/${short.id}`) Go to short's page
+            if locals.authenticated
+                if short.userId === userId 
+                    button.delete Delete
+
     
