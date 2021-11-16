@@ -83,7 +83,8 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     res.render('short-page', {
         title: short.title,
         short,
-        username: user.username
+        username: user.username,
+        userId: user.id
     });
 }));
 
@@ -94,7 +95,7 @@ router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
 }));
 
 const shortValidators = [
-  check('shorts')
+  check('content')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for short field'),
   check('title')
@@ -104,34 +105,38 @@ const shortValidators = [
     .withMessage('Title can not be longer than 50 characters'),
 ];
 
-const checkPermissions = (short, currentUser) => {
-  if (short.userId !== currentUser.id) {
+const checkPermissions = (short, userId) => {
+  if (short.userId !== userId) {
     const err = new Error('Illegal operation.');
     err.status = 403;
     throw err;
   }
 };
 
-router.get('/edit/:id(\\d+)', requireAuth, csrfProtection,
+router.get('/:id(\\d+)/edit', requireAuth, csrfProtection,
   asyncHandler(async (req, res) => {
     const shortId = parseInt(req.params.id, 10);
     const short = await Short.findByPk(shortId);
+    console.log(res.locals.user)
+    const userId = req.session.auth.userId;
 
-    checkPermissions(short, res.locals.user);
+
+    // checkPermissions(short, req.session.auth.userId);
 
     res.render('shorts-edit', {
       title: 'Edit Short',
       short,
       csrfToken: req.csrfToken(),
+      userId
     });
   }));
 
-router.post('/edit/:id(\\d+)', requireAuth, shortValidators, csrfProtection,
+router.post('/:id(\\d+)/edit', requireAuth, shortValidators, csrfProtection,
   asyncHandler(async(req, res) => {
   const shortId = parseInt(req.params.id, 10);
-  const shortToUpdate = await db.Short.findByPk(shortId);
+  const shortToUpdate = await Short.findByPk(shortId);
 
-  checkPermissions(shortToUpdate, res.locals.user);
+//   checkPermissions(shortToUpdate, res.locals.user);
 
   const {
     title,
