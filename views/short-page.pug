@@ -6,5 +6,9 @@ block content
         a(href=`/users/${short.userId}`) #{username}
     div    
         p= short.content
+    if locals.authenticated
+        if short.userId === userId
+            div 
+                a(href=`/shorts/${short.id}/edit`) Edit the short
     div 
         a(href='/shorts') Back to Shorts!

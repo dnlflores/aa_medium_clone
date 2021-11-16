@@ -1,7 +1,7 @@
 extends layout
 include utils
 block content
-    form(action=`/shorts/edit/${short.id}` method='POST')
+    form(action=`/shorts/${short.id}/edit` method='POST')
       +validationErrorSummary(errors)
       input(type='hidden' name='_csrf' value=csrfToken)
       +field('Title', 'title', short.title)
