@@ -1,4 +1,17 @@
 extends layout.pug 
 
-block content 
+block content
+    h1 Shorts!
+    each short in shorts
+            div= short.title 
+            a(href=`/shorts/${short.id}`) Go to short's page
+            if locals.authenticated
+                if short.userId === userId 
+                    button.delete Delete
+    div 
+        a(href='/') Back to Home!
+    div 
+        a(href='/shorts/create') Create a short!
+
+
     

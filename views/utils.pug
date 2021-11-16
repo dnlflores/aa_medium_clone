@@ -8,5 +8,9 @@ mixin validationErrorSummary(errors)
 
 mixin field(labelText, fieldName, fieldValue, fieldType = 'text', placeholder=null)
   div
-    label(for=fieldName)= labelText
-    input(type=fieldType id=fieldName name=fieldName value=fieldValue placeholder=placeholder)
+    if fieldType === 'textarea'
+      label(for=fieldName)= labelText
+      textarea(name=fieldName rows=3 cols=25)= fieldValue
+    else
+      label(for=fieldName)= labelText
+      input(type=fieldType id=fieldName name=fieldName value=fieldValue placeholder=placeholder)
