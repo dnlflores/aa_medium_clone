@@ -5,7 +5,7 @@ const { check, validationResult } = require('express-validator');
 
 const { asyncHandler, csrfProtection, bcrypt } = require('./utils');
 
-const { loginUser } = require('../auth')
+const { loginUser, logoutUser } = require('../auth')
 
 
 /* GET users listing. */
@@ -155,5 +155,10 @@ router.post('/login', csrfProtection, userLoginValidators, asyncHandler(async fu
     });
   }
 }));
+
+router.post('/logout', (req, res) => {
+  logoutUser(req, res);
+  res.redirect('/users/login');
+});
 
 module.exports = router;

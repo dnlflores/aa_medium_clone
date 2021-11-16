@@ -7,7 +7,7 @@ html
   body
     if locals.authenticated 
       span Welcome #{user.username}!
-      form(action='/user/logout' method='post')
+      form(action='/users/logout' method='post')
         button Logout
     else 
       span 
