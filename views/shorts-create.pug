@@ -1,0 +1,9 @@
+extend layout 
+include utils
+block content
+labelText, fieldName, fieldValue, fieldType = 'text', placeholder=null)
+    form(action=`/shorts/${locals.user.id}/post` method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        +field('Title', 'title')
+        +field('Content', 'content', 'textarea')
+        button Create Short
