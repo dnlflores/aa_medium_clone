@@ -1,9 +1,9 @@
 extend layout 
 include utils
 block content
-labelText, fieldName, fieldValue, fieldType = 'text', placeholder=null)
-    form(action=`/shorts/${locals.user.id}/post` method='post')
+    +validationErrorSummary(errors)
+    form(action=`/shorts/create` method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
-        +field('Title', 'title')
-        +field('Content', 'content', 'textarea')
+        +field('Title', 'title', short.title)
+        +field('Content', 'content', short.content, 'textarea')
         button Create Short
