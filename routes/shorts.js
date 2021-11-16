@@ -101,15 +101,15 @@ const shortValidators = [
 const checkPermissions = (short, currentUser) => {
   if (short.userId !== currentUser.id) {
     const err = new Error('Illegal operation.');
-    err.status = 403; // Forbidden
+    err.status = 403;
     throw err;
   }
 };
 
-router.get('/short/edit/:id(\\d+)', requireAuth, csrfProtection,
+router.get('/edit/:id(\\d+)', requireAuth, csrfProtection,
   asyncHandler(async (req, res) => {
     const shortId = parseInt(req.params.id, 10);
-    const short = await db.Short.findByPk(shortId);
+    const short = await Short.findByPk(shortId);
 
     checkPermissions(short, res.locals.user);
 
@@ -120,7 +120,7 @@ router.get('/short/edit/:id(\\d+)', requireAuth, csrfProtection,
     });
   }));
 
-router.post('/book/edit/:id(\\d+)', requireAuth, shortValidators, csrfProtection,
+router.post('/edit/:id(\\d+)', requireAuth, shortValidators, csrfProtection,
   asyncHandler(async(req, res) => {
   const shortId = parseInt(req.params.id, 10);
   const shortToUpdate = await db.Short.findByPk(shortId);
