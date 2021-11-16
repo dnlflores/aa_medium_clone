@@ -1,0 +1,7 @@
+extends layout.pug 
+
+block content 
+    h1= short.title
+    a(href=`/users/${short.userId}`) #{username}
+    div    
+        p= short.content
