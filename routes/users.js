@@ -139,7 +139,9 @@ router.post('/login', csrfProtection, userLoginValidators, asyncHandler(async fu
     const hashedPassword = foundUser.hashedPassword;
     const passwordTest = await bcrypt.compare(password, hashedPassword);
     if(passwordTest) {
-      loginUser(req,res,user)
+      const authenticatedUser = await User.findOne({ where: { email },
+                                             attributes: ['id','username']})
+      loginUser(req,res, authenticatedUser)
       return res.redirect('/');
     } else {
       errors.push('Login credentials invalid.')
