@@ -2,6 +2,9 @@ extends layout.pug
 
 block content 
     h1= short.title
-    a(href=`/users/${short.userId}`) #{username}
+    p By: 
+        a(href=`/users/${short.userId}`) #{username}
     div    
         p= short.content
+    div 
+        a(href='/shorts') Back to Shorts!

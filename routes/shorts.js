@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { Short } = require('../db/models');
+const { Short, User } = require('../db/models');
 const { check, validationResult } = require('express-validator');
 
 const { asyncHandler, csrfProtection } = require('./utils');
@@ -67,7 +67,7 @@ router.get('/', asyncHandler(async (req, res, next) => {
         limit: 15
     });
 
-    const { userId } = req.session.auth.userId;
+    const userId  = req.session.auth.userId;
 
     res.render('shorts', {
         title: "Shorts",
@@ -86,5 +86,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
         username: user.username
     });
 }));
+
+// router.post('/:id(\\d+)/delete');
 
 module.exports = router;
