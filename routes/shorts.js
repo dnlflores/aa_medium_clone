@@ -87,6 +87,10 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     });
 }));
 
-// router.post('/:id(\\d+)/delete');
+router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+    const shortId = req.params.id;
+    const short = await Short.findByPk(shortId);
+    await short.destroy();
+}));
 
 module.exports = router;
