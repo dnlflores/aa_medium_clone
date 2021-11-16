@@ -5,4 +5,12 @@ html
         title= title
         link(rel='stylesheet' href='/stylesheets/reset.css')
   body
+    if locals.authenticated 
+      span Welcome #{user.username}!
+      form(action='/user/logout' method='post')
+        button Logout
+    else 
+      span 
+        a(href='/user/login') Login 
+        a(href='/user/register') Register 
     block content
