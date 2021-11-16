@@ -12,15 +12,13 @@ window.addEventListener('DOMContentLoaded', () => {
     const pageDeleteButton = document.querySelector('.delete-page');
 
     pageDeleteButton.addEventListener('click', event => {
-        console.log(event.target.id);
+        console.log(event);
         fetch(`/shorts/${event.target.id}`, {
             method: 'DELETE',
-        });
-        fetch('/shorts', {
-            headers: {
-                "Content-Type": 'application/json'
-            },
-            method: "GET"
+        }).then( res => {
+            if(res.redirected) {
+                window.location.href= '/shorts'
+            }
         });
     });
 });
