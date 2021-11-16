@@ -5,6 +5,8 @@ const { check, validationResult } = require('express-validator');
 
 const { asyncHandler, csrfProtection, bcrypt } = require('./utils');
 
+const { loginUser } = require('../auth')
+
 
 /* GET users listing. */
 router.get('/register', csrfProtection, asyncHandler(async function (req, res, next) {
@@ -81,7 +83,8 @@ router.post('/register', csrfProtection, userValidators, asyncHandler(async func
     user.hashedPassword = hashedPassword;
     console.log(user.hashedPassword, hashedPassword);
     await user.save();
-    res.redirect('/');
+    loginUser(req,res,user)
+    return res.redirect('/');
   } else {
     res.render('user-create', {
       user,
@@ -123,25 +126,26 @@ const userLoginValidators = [
 router.post('/login', csrfProtection, userLoginValidators, asyncHandler(async function (req, res) {
   const { email, password } = req.body;
   const foundUser = await User.findOne({ where: { email } })
-  
+
   const user = {
     email
   };
-  
-  
+
+
   const validatorCheck = validationResult(req);
   const errors = validatorCheck.array().map(error => error.msg);
-  
+
   if(!errors[0]) {
     const hashedPassword = foundUser.hashedPassword;
     const passwordTest = await bcrypt.compare(password, hashedPassword);
     if(passwordTest) {
-      res.redirect('/');
+      loginUser(req,res,user)
+      return res.redirect('/');
     } else {
       errors.push('Login credentials invalid.')
     }
     //TO-DO
-  } 
+  }
   if(errors[0]) {
     res.render('user-login', {
       user,
