@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { Short } = require('../db/models');
+const { Short, User } = require('../db/models');
 const { check, validationResult } = require('express-validator');
 
 const { asyncHandler, csrfProtection } = require('./utils');
