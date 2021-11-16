@@ -81,10 +81,9 @@ router.post('/register', csrfProtection, userValidators, asyncHandler(async func
   const errors = validatorCheck.array().map(error => error.msg);
   if(!errors[0]) {
     user.hashedPassword = hashedPassword;
-    console.log(user.hashedPassword, hashedPassword);
     await user.save();
     loginUser(req,res,user)
-    return res.redirect('/');
+    
   } else {
     res.render('user-create', {
       user,
@@ -140,7 +139,7 @@ router.post('/login', csrfProtection, userLoginValidators, asyncHandler(async fu
     const passwordTest = await bcrypt.compare(password, hashedPassword);
     if(passwordTest) {
       loginUser(req,res, foundUser)
-      return res.redirect('/');
+      // return res.redirect('/');
     } else {
       errors.push('Login credentials invalid.')
     }
@@ -158,7 +157,6 @@ router.post('/login', csrfProtection, userLoginValidators, asyncHandler(async fu
 
 router.post('/logout', (req, res) => {
   logoutUser(req, res);
-  res.redirect('/users/login');
 });
 
 module.exports = router;
