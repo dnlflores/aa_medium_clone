@@ -50,7 +50,7 @@ router.post('/create', csrfProtection, validate, requireAuth, asyncHandler(async
         console.log(req.session.auth.userId)
         short.userId = req.session.auth.userId;
         await short.save();
-        res.redirect(`/shorts/${short.userId}`)
+        res.redirect(`/shorts/${short.id}`)
     } else {
         res.render('shorts-create', {
             title: 'Create User',
