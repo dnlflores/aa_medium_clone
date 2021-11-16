@@ -10,5 +10,6 @@ block content
         if short.userId === userId
             div 
                 a(href=`/shorts/${short.id}/edit`) Edit the short
+                button.delete-page(id=`${short.id}`) Delete
     div 
         a(href='/shorts') Back to Shorts!
