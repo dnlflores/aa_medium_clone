@@ -15,10 +15,15 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Like, {
       foreignKey: 'userId'
     });
-    User.belongsToMany(models.Follow, {
+    User.belongsToMany(models.User, {
       through: 'Follow',
       foreignKey: 'followId',
-      otherKey: 'followedId'
+      as: 'followedId'
+    });
+    User.belongsToMany(models.User, {
+      through: 'Follow',
+      foreignKey: 'followedId',
+      as: 'followId'
     });
   };
   return User;
