@@ -1,0 +1,10 @@
+extend layout
+include utils
+block content
+labelText, fieldName, fieldValue, fieldType = 'text', placeholder=null)
+    form(action=`/shorts/edit/${short.id}` method='POST')
+      +validationErrorSummary(errors)
+      input(type='hidden' name='_csrf' value=csrfToken)
+      h1(id="form-title") Edit Short
+      input(type="text" name="title" value=short.title)
+      button Submit
