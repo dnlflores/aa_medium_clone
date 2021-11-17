@@ -82,7 +82,11 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     const shortId = req.params.id;
     const short = await Short.findByPk(shortId);
     const user = await User.findByPk(short.userId);
-    const comments = await Comment.findAll({ where: { shortId }, include: [{model: User, attributes: ['username']}]})
+    const comments = await Comment.findAll({ 
+        where: { shortId }, 
+        include: [{model: User, attributes: ['username']}],
+        order: [['createdAt', 'ASC']]
+    })
     res.render('short-page', {
         title: short.title,
         short,
