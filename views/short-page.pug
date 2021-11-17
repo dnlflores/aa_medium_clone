@@ -14,6 +14,8 @@ block content
     div
         a(href='/shorts') Back to Shorts!
     div
+        p#likeCount Likes: #{likes.length}
+    div
         if !like
             button(class=`${short.id} likes`) Like
             button(class=`${short.id} deleteLikes` hidden) Unlike

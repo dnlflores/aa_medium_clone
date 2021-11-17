@@ -4,6 +4,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const unlikeButton = unlikeButtons[0]
   const likeButton = likeButtons[0] // grabbing first ele from array like button
   const shortId = likeButton.className.split(' ')[0] //number
+  const likeCounter = document.getElementById('likeCount')
 
   likeButton.addEventListener('click', event => {
     fetch(`/shorts/${shortId}/likes`, {
@@ -11,6 +12,8 @@ window.addEventListener('DOMContentLoaded', () => {
     })
   likeButton.setAttribute('hidden', 'true')
   unlikeButton.removeAttribute('hidden')
+  const likeNum = parseInt(likeCounter.innerText.split(':')[1], 10)
+  likeCounter.innerHTML=`Likes: ${likeNum+1}` // updates in live time
   });
 
   unlikeButton.addEventListener('click', event => {
@@ -19,5 +22,7 @@ window.addEventListener('DOMContentLoaded', () => {
     })
     unlikeButton.setAttribute('hidden', 'true')
     likeButton.removeAttribute('hidden')
+  const likeNum = parseInt(likeCounter.innerText.split(':')[1], 10)
+  likeCounter.innerHTML=`Likes: ${likeNum-1}`
   })
 });
