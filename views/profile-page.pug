@@ -17,10 +17,10 @@ block content
     h2 #{profileUser.username} Shorts
     each short in shorts
             div= short.title 
-            a(href=`/shorts/${short.id}`) View Short
-            if locals.authenticated
-                if short.userId === userId 
-                    button.delete(id=`${short.id}`) Delete
+                a(href=`/shorts/${short.id}`) View Short
+                if locals.authenticated
+                    if short.userId === userId 
+                        button.delete(id=`${short.id}`) Delete
     div 
         a(href='/') Back to Home!
     if locals.authenticated
