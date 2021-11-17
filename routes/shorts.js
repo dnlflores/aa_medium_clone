@@ -100,7 +100,7 @@ router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     const shortId = req.params.id;
     const short = await Short.findByPk(shortId);
     await short.destroy();
-    res.redirect('/shorts');
+    res.send();
 }));
 
 const shortValidators = [

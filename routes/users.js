@@ -140,11 +140,9 @@ router.post('/login', csrfProtection, userLoginValidators, asyncHandler(async fu
     const passwordTest = await bcrypt.compare(password, hashedPassword);
     if (passwordTest) {
       loginUser(req, res, foundUser)
-      // return res.redirect('/');
     } else {
       errors.push('Login credentials invalid.')
     }
-    //TO-DO
   }
   if (errors[0]) {
     res.render('user-login', {
@@ -162,23 +160,23 @@ router.post('/logout', (req, res) => {
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
   let browserId = 0;
-  const user = await User.findByPk(req.params.id);
+  const profileUser = await User.findByPk(req.params.id);
   const shorts = await Short.findAll({
     where: {
-      userId: user.id
+      userId: profileUser.id
     }
   });
   const followers = await Follow.findAll({
     where: {
-      followedId: user.id
+      followedId: profileUser.id
     }
   });
   const followings = await Follow.findAll({
     where: {
-      followId: user.id
+      followId: profileUser.id
     }
   });
-  console.log(followers.length, followings.length);
+  
   if (req.session.auth) {
     browserId = req.session.auth.userId;
   }
@@ -186,17 +184,17 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
   const findFollow = await Follow.findAll({
     where: {
       followId: browserId,
-      followedId: user.id
+      followedId: profileUser.id
     }
   });
   
   const follow = findFollow[0];
 
   res.render('profile-page', {
-    title: `${user.username} Profile Page`,
-    user,
+    title: `${profileUser.username} Profile Page`,
+    profileUser,
     shorts,
-    userId: user.id,
+    userId: req.session.auth.userId,
     follow,
     browserId,
     followings: followings.length,
@@ -216,7 +214,7 @@ router.post('/:id(\\d+)/follows', requireAuth, asyncHandler(async (req, res, nex
     });
     await follow.save();
   }
-  res.redirect(`/users/${user.id}`);
+  res.send();
 }));
 
 router.delete('/:id(\\d+)/follows', requireAuth, asyncHandler(async (req, res, next) => {
@@ -229,7 +227,7 @@ router.delete('/:id(\\d+)/follows', requireAuth, asyncHandler(async (req, res, n
     }
   });
   await follows[0].destroy();
-  res.redirect(`/users/${req.params.id}`);
+  res.send();
 }));
 
 module.exports = router;
