@@ -3,17 +3,17 @@ button#add-comment Add Comment
 div.add-section(style='visibility: hidden') 
     label(for='content') Content
     textarea#content(name='content', rows=3, cols=30)
-    button.submit-add Submit
+    button.submit-add(id= short.id) Submit
 
 div.comment-section
     for comment in comments 
         if comment
             div 
-                p= comment.Users.username
+                p= comment.User.username
                 pre= comment.content
                 if locals.authenticated
-                if short.userId === userId
-                        button.edit-comment(id=`edit-${comment.id}`) Edit
-                        button.delete-comment(id=`delete-${comment.id}`) Delete
+                    if short.userId === userId
+                            button.edit-comment(id=`edit-${comment.id}`) Edit
+                            button.delete-comment(id=`delete-${comment.id}`) Delete
 
 script(src='/javascripts/comments.js')
