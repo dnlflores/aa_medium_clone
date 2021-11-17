@@ -168,20 +168,29 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
       userId: user.id
     }
   });
-
+  const followers = await Follow.findAll({
+    where: {
+      followedId: user.id
+    }
+  });
+  const followings = await Follow.findAll({
+    where: {
+      followId: user.id
+    }
+  });
+  console.log(followers.length, followings.length);
   if (req.session.auth) {
     browserId = req.session.auth.userId;
   }
 
-  const follows = await Follow.findAll({
+  const findFollow = await Follow.findAll({
     where: {
       followId: browserId,
       followedId: user.id
     }
   });
   
-  const follow = follows[0];
-  console.log('TESTTTTTTTTTTTT', follow);
+  const follow = findFollow[0];
 
   res.render('profile-page', {
     title: `${user.username} Profile Page`,
@@ -189,7 +198,9 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     shorts,
     userId: user.id,
     follow,
-    browserId
+    browserId,
+    followings: followings.length,
+    followers: followers.length
   });
 }));
 
