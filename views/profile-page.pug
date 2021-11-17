@@ -7,7 +7,7 @@ block content
     if locals.authenticated
         if browserId !== profileUser.id
             if !follow
-                form(action=`/profileUsers/${profileUser.id}/follows` method='post')
+                form(action=`/users/${profileUser.id}/follows` method='post')
                     button Follow
             else 
                 p You follow #{profileUser.username}!
