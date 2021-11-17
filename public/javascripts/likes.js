@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', () => {
     unlikeButton.addEventListener('click', event => {
       if (shortId !== 0) {
         fetch(`/shorts/${shortId}/likes`, {
-          method: 'POST' //what we called our route
+          method: 'DELETE' //what we called our route
         });
       }
       unlikeButton.setAttribute('hidden', 'true');
