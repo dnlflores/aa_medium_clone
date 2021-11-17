@@ -62,12 +62,15 @@ router.post('/create', csrfProtection, validate, requireAuth, asyncHandler(async
 }));
 
 router.get('/', asyncHandler(async (req, res, next) => {
+    let userId = 0;
     const shorts = await Short.findAll({
         order: [['updatedAt', 'DESC']],
         limit: 15
     });
 
-    const userId  = req.session.auth.userId;
+    if(req.session.auth) {
+        userId = req.session.auth.userId;
+    }
 
     res.render('shorts', {
         title: "Shorts",
