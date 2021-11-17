@@ -1,19 +1,19 @@
 button#add-comment Add Comment
 
 div.add-section(style='visibility: hidden') 
-    label(for='title') Title
-    input#title(type='text', name='title', value=comment.title)
     label(for='content') Content
-    input#content(type='text', name='content', value=comment.content)
+    textarea#content(name='content', rows=3, cols=30)
+    button.submit-add Submit
 
 div.comment-section
     for comment in comments 
-        div 
-            p= comment.Users.username
-            pre= comment.content
-            if locals.authenticated
-            if short.userId === userId
-                    button.edit-comment(id=`edit-${comment.id}`) Edit
-                    button.delete-comment(id=`delete-${comment.id}`) Delete
+        if comment
+            div 
+                p= comment.Users.username
+                pre= comment.content
+                if locals.authenticated
+                if short.userId === userId
+                        button.edit-comment(id=`edit-${comment.id}`) Edit
+                        button.delete-comment(id=`delete-${comment.id}`) Delete
 
-script(src='/javascripts/comments')
+script(src='/javascripts/comments.js')

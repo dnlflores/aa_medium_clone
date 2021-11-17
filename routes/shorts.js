@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { Short, User } = require('../db/models');
+const { Short, User, Comment } = require('../db/models');
 const { check, validationResult } = require('express-validator');
 
 const { asyncHandler, csrfProtection } = require('./utils');
@@ -83,11 +83,13 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     const shortId = req.params.id;
     const short = await Short.findByPk(shortId);
     const user = await User.findByPk(short.userId);
+    const comments = await Comment.findAll({ where: { shortId }})
     res.render('short-page', {
         title: short.title,
         short,
         username: user.username,
-        userId: user.id
+        userId: user.id,
+        comments
     });
 }));
 
