@@ -5,7 +5,7 @@ const { check, validationResult } = require('express-validator');
 
 const { asyncHandler, csrfProtection } = require('./utils');
 const { requireAuth } = require('../auth');
-const commentsRouter = require('./comments');
+
 
 const router = express.Router();
 
