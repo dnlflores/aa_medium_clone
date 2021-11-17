@@ -64,7 +64,7 @@ const userValidators = [
     .exists({ checkFalsy: true })
     .withMessage('Please enter a password to confirm.')
     .custom((value, { req }) => {
-      if(value !== req.body.password) return false;
+      if (value !== req.body.password) return false;
       else return true;
     })
     .withMessage('Passwords must match.')
@@ -79,11 +79,11 @@ router.post('/register', csrfProtection, userValidators, asyncHandler(async func
   });
   const validatorCheck = validationResult(req);
   const errors = validatorCheck.array().map(error => error.msg);
-  if(!errors[0]) {
+  if (!errors[0]) {
     user.hashedPassword = hashedPassword;
     await user.save();
-    loginUser(req,res,user)
-    
+    loginUser(req, res, user)
+
   } else {
     res.render('user-create', {
       user,
@@ -115,7 +115,8 @@ const userLoginValidators = [
           );
         }
       }
-    )}),
+      )
+    }),
   check('password')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a password.')
@@ -134,18 +135,16 @@ router.post('/login', csrfProtection, userLoginValidators, asyncHandler(async fu
   const validatorCheck = validationResult(req);
   const errors = validatorCheck.array().map(error => error.msg);
 
-  if(!errors[0]) {
+  if (!errors[0]) {
     const hashedPassword = foundUser.hashedPassword;
     const passwordTest = await bcrypt.compare(password, hashedPassword);
-    if(passwordTest) {
-      loginUser(req,res, foundUser)
-      // return res.redirect('/');
+    if (passwordTest) {
+      loginUser(req, res, foundUser)
     } else {
       errors.push('Login credentials invalid.')
     }
-    //TO-DO
   }
-  if(errors[0]) {
+  if (errors[0]) {
     res.render('user-login', {
       user,
       title: 'Login',
@@ -160,24 +159,75 @@ router.post('/logout', (req, res) => {
 });
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
-  const user = await User.findByPk(req.params.id);
+  let browserId = 0;
+  const profileUser = await User.findByPk(req.params.id);
   const shorts = await Short.findAll({
     where: {
-      userId: user.id
+      userId: profileUser.id
+    }
+  });
+  const followers = await Follow.findAll({
+    where: {
+      followedId: profileUser.id
+    }
+  });
+  const followings = await Follow.findAll({
+    where: {
+      followId: profileUser.id
     }
   });
   
+  if (req.session.auth) {
+    browserId = req.session.auth.userId;
+  }
+
+  const findFollow = await Follow.findAll({
+    where: {
+      followId: browserId,
+      followedId: profileUser.id
+    }
+  });
+  
+  const follow = findFollow[0];
+
   res.render('profile-page', {
-    title: `${user.username} Profile Page`,
-    user,
+    title: `${profileUser.username} Profile Page`,
+    profileUser,
     shorts,
-    userId: user.id
+    userId: req.session.auth.userId,
+    follow,
+    browserId,
+    followings: followings.length,
+    followers: followers.length
   });
 }));
 
 router.post('/:id(\\d+)/follows', requireAuth, asyncHandler(async (req, res, next) => {
   const user = await User.findByPk(req.params.id);
+  let browser = null;
+  if (req.session.auth) browser = await User.findByPk(req.session.auth.userId);
+  let follow = {}
+  if (browser) {
+    follow = await Follow.build({
+      followId: browser.id,
+      followedId: user.id
+    });
+    await follow.save();
+  }
+  res.send();
+}));
 
+router.delete('/:id(\\d+)/follows', requireAuth, asyncHandler(async (req, res, next) => {
+  const browserId = req.session.auth.userId;
+  const userId = req.params.id;
+  const follows = await Follow.findAll({
+    where: {
+      followId: browserId,
+      followedId: userId
+    }
+  });
+  await follows[0].destroy();
+  res.send();
 }));
 
 module.exports = router;
