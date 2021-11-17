@@ -140,11 +140,9 @@ router.post('/login', csrfProtection, userLoginValidators, asyncHandler(async fu
     const passwordTest = await bcrypt.compare(password, hashedPassword);
     if (passwordTest) {
       loginUser(req, res, foundUser)
-      // return res.redirect('/');
     } else {
       errors.push('Login credentials invalid.')
     }
-    //TO-DO
   }
   if (errors[0]) {
     res.render('user-login', {
@@ -178,7 +176,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
       followId: profileUser.id
     }
   });
-  console.log(followers.length, followings.length);
+  
   if (req.session.auth) {
     browserId = req.session.auth.userId;
   }
@@ -216,7 +214,7 @@ router.post('/:id(\\d+)/follows', requireAuth, asyncHandler(async (req, res, nex
     });
     await follow.save();
   }
-  res.redirect(`/users/${user.id}`);
+  res.send();
 }));
 
 router.delete('/:id(\\d+)/follows', requireAuth, asyncHandler(async (req, res, next) => {
@@ -229,7 +227,7 @@ router.delete('/:id(\\d+)/follows', requireAuth, asyncHandler(async (req, res, n
     }
   });
   await follows[0].destroy();
-  res.redirect(`/users/${req.params.id}`);
+  res.send();
 }));
 
 module.exports = router;
