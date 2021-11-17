@@ -93,16 +93,15 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
       }
     });
 
-    const foundLike = await Like.findAll({
+    const like = await Like.findOne({
       where:{
         shortId,
-        userId: user.id
+        userId: req.session.auth.userId
       }
     });
 
-    const like = foundLike[0]
+    console.log(like);
 
-    console.log(like)
     res.render('short-page', {
         title: short.title,
         short,
