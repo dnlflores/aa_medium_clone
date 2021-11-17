@@ -173,8 +173,14 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     browserId = req.session.auth.userId;
   }
 
-  const follow = await Follow.findByPk(browserId);
-
+  const follows = await Follow.findAll({
+    where: {
+      followId: browserId,
+      followedId: user.id
+    }
+  });
+  
+  const follow = follows[0];
   console.log('TESTTTTTTTTTTTT', follow);
 
   res.render('profile-page', {
@@ -190,16 +196,29 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
 router.post('/:id(\\d+)/follows', requireAuth, asyncHandler(async (req, res, next) => {
   const user = await User.findByPk(req.params.id);
   let browser = null;
-  if(req.session.auth) browser = await User.findByPk(req.session.auth.userId);
+  if (req.session.auth) browser = await User.findByPk(req.session.auth.userId);
   let follow = {}
-  if(browser) {
+  if (browser) {
     follow = await Follow.build({
       followId: browser.id,
       followedId: user.id
     });
-     await follow.save();
+    await follow.save();
   }
   res.redirect(`/users/${user.id}`);
+}));
+
+router.delete('/:id(\\d+)/follows', requireAuth, asyncHandler(async (req, res, next) => {
+  const browserId = req.session.auth.userId;
+  const userId = req.params.id;
+  const follows = await Follow.findAll({
+    where: {
+      followId: browserId,
+      followedId: userId
+    }
+  });
+  await follows[0].destroy();
+  res.redirect(`/users/${req.params.id}`);
 }));
 
 module.exports = router;
