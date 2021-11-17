@@ -39,6 +39,7 @@ window.addEventListener('DOMContentLoaded', () => {
             <button id='delete-${commentId}' class='delete-comment'> Delete </button>
         </div>`;
 
+        addListeners();
         document.querySelector('#content').value = '';
         addSection.setAttribute('style', 'visibility: hidden; height: 0px;');
     })
@@ -56,7 +57,7 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const addListeners = () => {
+    function addListeners() {
         const editButtons = Array.from(document.querySelectorAll('.edit-comment'));
         editButtons.forEach( button => {
             button.addEventListener('click', async () => {
@@ -66,7 +67,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 button.parentElement.innerHTML += `
                     <div id='edit-div-${id}'>
                         <label for='content'> Content </label>
-                        <textarea id='edit-content-${id}', name='content', rows=3, cols=30> </textarea>
+                        <textarea id='edit-content-${id}', name='content', rows=3, cols=30></textarea>
                         <button id='edit-submit-${id}'> Submit </button>
                         <button id='edit-cancel-${id}'> Cancel </button>
                     </div>
@@ -99,7 +100,8 @@ window.addEventListener('DOMContentLoaded', () => {
                         <button id='edit-${id}' class='edit-comment'> Edit </button>
                         <button id='delete-${id}' class='delete-comment'> Delete </button>
                     </div>`;
-        
+                    
+                    addListeners();
                     editDiv.remove();
     
                 })
