@@ -20,8 +20,7 @@ block content
             a(href=`/shorts/${short.id}`) View Short
             if locals.authenticated
                 if short.userId === userId 
-                    div
-                        button.delete(id=`${short.id}`) Delete
+                    button.delete(id=`${short.id}`) Delete
     div 
         a(href='/') Back to Home!
     if locals.authenticated
