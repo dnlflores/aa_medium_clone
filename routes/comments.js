@@ -10,7 +10,21 @@ const router = express.Router();
 
 
 router.put('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
-
+    console.log('hello')
+    const userId = req.session.auth.userId;
+    const { content } = req.body;
+    console.log(content)
+    await Comment.update({
+        content,
+    });
+    console.log('hello again')
+    const user = await User.findByPk(userId);
+    const username = user.username;
+    
+    res.send({
+        content,
+        username
+    })
 }));
 
 router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
