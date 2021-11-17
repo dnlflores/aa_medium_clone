@@ -101,7 +101,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     });
 
     const like = foundLike[0]
-    
+
     console.log(like)
     res.render('short-page', {
         title: short.title,
@@ -211,6 +211,20 @@ router.post('/:id(\\d+)/likes', requireAuth, asyncHandler(async (req, res) => {
     shortId,
   });
   await like.save()
+  res.send()
+  })
+);
+
+router.delete('/:id(\\d+)/likes', requireAuth, asyncHandler(async (req, res) =>{
+  const shortId = parseInt(req.params.id, 10);
+  const { userId } = req.session.auth
+  const like = await Like.findOne({
+  where: {
+    userId,
+    shortId
+    }
+  })
+  await like.destroy()
   res.send()
   })
 );
