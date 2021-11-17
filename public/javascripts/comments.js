@@ -42,4 +42,17 @@ window.addEventListener('DOMContentLoaded', () => {
         document.querySelector('#content').value = '';
         addSection.setAttribute('style', 'visibility: hidden; height: 0px;');
     })
+
+    const deleteButtons = Array.from(document.querySelectorAll('.delete-comment'));
+    deleteButtons.forEach( button => {
+        button.addEventListener('click', async () => {
+            console.log('hello')
+            const id = button.id.slice(7)
+            console.log(id)
+            await fetch(`/comments/${id}`, {
+                method: 'DELETE',
+            });
+            button.parentElement.innerHTML = '';
+        });
+    });
 });
