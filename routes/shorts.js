@@ -5,8 +5,11 @@ const { check, validationResult } = require('express-validator');
 
 const { asyncHandler, csrfProtection } = require('./utils');
 const { requireAuth } = require('../auth');
+const commentsRouter = require('./comments');
 
 const router = express.Router();
+
+router.use('/:id(\\d+)/comments', commentsRouter)
 
 router.get('/create', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
     const short = await Short.build();
