@@ -196,7 +196,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     title: `${profileUser.username} Profile Page`,
     profileUser,
     shorts,
-    userId: profileUser.id,
+    userId: req.session.auth.userId,
     follow,
     browserId,
     followings: followings.length,
