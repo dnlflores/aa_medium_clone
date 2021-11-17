@@ -1,18 +1,18 @@
 extends layout 
 
 block content 
-    h1  #{user.username}
+    h1  #{profileUser.username}
     p Followers: #{followers}
     p Follows: #{followings}
     if locals.authenticated
-        if browserId !== user.id
+        if browserId !== profileUser.id
             if !follow
-                form(action=`/users/${user.id}/follows` method='post')
+                form(action=`/profileUsers/${profileUser.id}/follows` method='post')
                     button Follow
             else 
-                p You follow #{user.username}!
-                button(class=`deleteFollow ${user.id}`) Unfollow
-    h2 #{user.username}'s Shorts
+                p You follow #{profileUser.username}!
+                button(class=`deleteFollow ${profileUser.id}`) Unfollow
+    h2 #{profileUser.username}'s Shorts
     each short in shorts
             div= short.title 
                 a(href=`/shorts/${short.id}`) Go to short's page
