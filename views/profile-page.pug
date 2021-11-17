@@ -11,5 +11,6 @@ block content
                         button.delete(id=`${short.id}`) Delete
     div 
         a(href='/') Back to Home!
-    div 
-        a(href='/shorts/create') Create a short!
+    if locals.authenticated
+        div 
+            a(href='/shorts/create') Create a short!

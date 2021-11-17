@@ -4,14 +4,15 @@ block content
     h1 Shorts!
     each short in shorts
             div= short.title 
-                a(href=`/shorts/${short.id}`) Go to short's page
+                a(href=`/shorts/${short.id}`) View Short
                 if locals.authenticated
                     if short.userId === userId 
                         button.delete(id=`${short.id}`) Delete
     div 
         a(href='/') Back to Home!
-    div 
-        a(href='/shorts/create') Create a short!
+    if locals.authenticated
+        div 
+            a(href='/shorts/create') Create a short!
 
 
     
