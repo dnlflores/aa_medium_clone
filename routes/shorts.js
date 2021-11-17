@@ -67,9 +67,7 @@ router.get('/', asyncHandler(async (req, res, next) => {
         limit: 15
     });
 
-    if (req.session.auth) {
-        userId = req.session.auth.userId;
-    }
+    if (req.session.auth) userId = req.session.auth.userId;
 
     res.render('shorts', {
         title: "Shorts",
@@ -84,29 +82,27 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     const user = await User.findByPk(short.userId);
     const comments = await Comment.findAll({
         where: { shortId },
-        include: [{model: User, attributes: ['username']}],
+        include: [{ model: User, attributes: ['username'] }],
         order: [['createdAt', 'ASC']]
     })
     const likes = await Like.findAll({
-      where:{
-        shortId
-      }
+        where: {
+            shortId
+        }
     });
 
     const like = await Like.findOne({
-      where:{
-        shortId,
-        userId: req.session.auth.userId
-      }
+        where: {
+            shortId,
+            userId: req.session.auth.userId
+        }
     });
-
-    console.log(like);
 
     res.render('short-page', {
         title: short.title,
         short,
         username: user.username,
-        userId: user.id,
+        userId: req.session.auth.userId,
         comments,
         likes,
         like // go to pug
@@ -148,36 +144,36 @@ router.get('/:id(\\d+)/edit', requireAuth, csrfProtection,
 
 router.post('/:id(\\d+)/edit', requireAuth, shortValidators, csrfProtection,
     asyncHandler(async (req, res) => {
-    const shortId = parseInt(req.params.id, 10);
-    const shortToUpdate = await Short.findByPk(shortId);
+        const shortId = parseInt(req.params.id, 10);
+        const shortToUpdate = await Short.findByPk(shortId);
 
-    const {
-        title,
-        content,
-        userId
-    } = req.body;
+        const {
+            title,
+            content,
+            userId
+        } = req.body;
 
-    const short = {
-        title,
-        content,
-        userId
-    };
+        const short = {
+            title,
+            content,
+            userId
+        };
 
-    const validatorErrors = validationResult(req);
+        const validatorErrors = validationResult(req);
 
-    if (validatorErrors.isEmpty()) {
-        await shortToUpdate.update(short);
-        res.redirect('/');
-    } else {
-        const errors = validatorErrors.array().map((error) => error.msg);
-        res.render('shorts-edit', {
-            title: 'Edit Short',
-            short: { ...short, shortId },
-            errors,
-            csrfToken: req.csrfToken(),
-        });
-    }
-}));
+        if (validatorErrors.isEmpty()) {
+            await shortToUpdate.update(short);
+            res.redirect('/');
+        } else {
+            const errors = validatorErrors.array().map((error) => error.msg);
+            res.render('shorts-edit', {
+                title: 'Edit Short',
+                short: { ...short, shortId },
+                errors,
+                csrfToken: req.csrfToken(),
+            });
+        }
+    }));
 
 router.post('/:id(\\d+)/comments', requireAuth, asyncHandler(async (req, res) => {
     const userId = req.session.auth.userId;
@@ -201,31 +197,31 @@ router.post('/:id(\\d+)/comments', requireAuth, asyncHandler(async (req, res) =>
 }));
 // likes
 router.post('/:id(\\d+)/likes', requireAuth, asyncHandler(async (req, res) => {
-  const shortId = parseInt(req.params.id, 10);
+    const shortId = parseInt(req.params.id, 10);
 
-  const { userId } = req.session.auth
+    const { userId } = req.session.auth
 
-  const like = await Like.build({
-    userId,
-    shortId,
-  });
-  await like.save()
-  res.send()
-  })
+    const like = await Like.build({
+        userId,
+        shortId,
+    });
+    await like.save()
+    res.send()
+})
 );
 
-router.delete('/:id(\\d+)/likes', requireAuth, asyncHandler(async (req, res) =>{
-  const shortId = parseInt(req.params.id, 10);
-  const { userId } = req.session.auth
-  const like = await Like.findOne({
-  where: {
-    userId,
-    shortId
-    }
-  })
-  await like.destroy()
-  res.send()
-  })
+router.delete('/:id(\\d+)/likes', requireAuth, asyncHandler(async (req, res) => {
+    const shortId = parseInt(req.params.id, 10);
+    const { userId } = req.session.auth
+    const like = await Like.findOne({
+        where: {
+            userId,
+            shortId
+        }
+    })
+    await like.destroy()
+    res.send()
+})
 );
 
 
