@@ -2,6 +2,11 @@ extends layout
 
 block content 
     h1  #{user.username}
+    if locals.authenticated
+        if browserId !== user.id
+            if !follow
+                form(action=`/users/${user.id}/follows` method='post')
+                    button Follow
     h2 #{user.username}'s Shorts
     each short in shorts
             div= short.title 
