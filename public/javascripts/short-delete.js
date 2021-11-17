@@ -12,7 +12,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const pageDeleteButton = document.querySelector('.delete-page');
 
     pageDeleteButton.addEventListener('click', event => {
-        console.log(event);
+        console.log(window.location.href);
         fetch(`/shorts/${event.target.id}`, {
             method: 'DELETE',
         }).then( res => {
