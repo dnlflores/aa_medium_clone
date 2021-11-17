@@ -81,7 +81,11 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     const shortId = req.params.id;
     const short = await Short.findByPk(shortId);
     const user = await User.findByPk(short.userId);
-    const comments = await Comment.findAll({ where: { shortId }, include: [{model: User, attributes: ['username']}]})
+    const comments = await Comment.findAll({ 
+        where: { shortId }, 
+        include: [{model: User, attributes: ['username']}],
+        order: [['createdAt', 'ASC']]
+    })
     res.render('short-page', {
         title: short.title,
         short,
@@ -172,21 +176,17 @@ router.post('/:id(\\d+)/edit', requireAuth, shortValidators, csrfProtection,
 router.post('/:id(\\d+)/comments', requireAuth, asyncHandler(async (req, res) => {
     const userId = req.session.auth.userId;
     const shortId = req.params.id;
-    const { content } = req.body;
-    console.log(req.body)
-    console.log(content)
-    const created = await Comment.create({
+    
+    await Comment.create({
         content,
         userId,
         shortId
     });
-    const commentId = created.dataValues.id;
+
     const user = await User.findByPk(userId);
     const username = user.username;
-    console.log(commentId)
-    console.log(username)
+    
     res.send({
-        content,
         username
     })
 }));

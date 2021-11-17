@@ -13,16 +13,13 @@ window.addEventListener('DOMContentLoaded', () => {
         const content = new URLSearchParams({
             content: precontent
         })
-        console.log('hello')
+
         const response = await fetch(`/shorts/${submitAdd.id}/comments`, {
             method: 'POST',
             body: content
         })
-        console.log('hello again')
         
         let resContent = await response.text();
-        //console.log(response.resolve())
-        console.log(JSON.parse(resContent))
         resContent = JSON.parse(resContent)
         const username = resContent.username;
         commentSection.innerHTML += 
