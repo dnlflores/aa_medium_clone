@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { Short, User, Comment } = require('../db/models');
+const { Short, User, Comment, Like } = require('../db/models');
 const { check, validationResult } = require('express-validator');
 
 const { asyncHandler, csrfProtection } = require('./utils');
@@ -82,17 +82,35 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     const shortId = req.params.id;
     const short = await Short.findByPk(shortId);
     const user = await User.findByPk(short.userId);
-    const comments = await Comment.findAll({ 
-        where: { shortId }, 
+    const comments = await Comment.findAll({
+        where: { shortId },
         include: [{model: User, attributes: ['username']}],
         order: [['createdAt', 'ASC']]
     })
+    const likes = await Like.findAll({
+      where:{
+        shortId
+      }
+    });
+
+    const foundLike = await Like.findAll({
+      where:{
+        shortId,
+        userId: user.id
+      }
+    });
+
+    const like = foundLike[0]
+    
+    console.log(like)
     res.render('short-page', {
         title: short.title,
         short,
         username: user.username,
         userId: user.id,
         comments,
+        likes,
+        like // go to pug
     });
 }));
 
@@ -166,7 +184,7 @@ router.post('/:id(\\d+)/comments', requireAuth, asyncHandler(async (req, res) =>
     const userId = req.session.auth.userId;
     const shortId = req.params.id;
     const { content } = req.body;
-    
+
     const created = await Comment.create({
         content,
         userId,
@@ -182,6 +200,20 @@ router.post('/:id(\\d+)/comments', requireAuth, asyncHandler(async (req, res) =>
         commentId
     })
 }));
-    
+// likes
+router.post('/:id(\\d+)/likes', requireAuth, asyncHandler(async (req, res) => {
+  const shortId = parseInt(req.params.id, 10);
+
+  const { userId } = req.session.auth
+
+  const like = await Like.build({
+    userId,
+    shortId,
+  });
+  await like.save()
+  res.send()
+  })
+);
+
 
 module.exports = router;

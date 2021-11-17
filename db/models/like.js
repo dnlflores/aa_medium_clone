@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'userId'
     });
     Like.belongsTo(models.Short, {
-      foreign: 'shortId'
+      foreignKey: 'shortId'
     });
   };
   return Like;

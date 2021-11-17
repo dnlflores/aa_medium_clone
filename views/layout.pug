@@ -6,13 +6,14 @@ html
         link(rel='stylesheet' href='/stylesheets/reset.css')
         script(src='/javascripts/short-delete.js')
         script(src='/javascripts/follow-delete.js')
+        script(src='/javascripts/likes.js')
   body
-    if locals.authenticated 
+    if locals.authenticated
       span Welcome #{user.username}!
       form(action='/users/logout' method='post')
         button Logout
-    else 
-      span 
-        a(href='/users/login') Login 
-        a(href='/users/register') Register 
+    else
+      span
+        a(href='/users/login') Login
+        a(href='/users/register') Register
     block content
