@@ -10,3 +10,6 @@ block content
   h1= title
   p Welcome to Shorts 
   a(href='/shorts') Click here to start exploring!
+  if locals.authenticated
+    div
+      a(href=`/users/${user.id}`) Go to profile!

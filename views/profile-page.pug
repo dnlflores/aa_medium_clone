@@ -1,10 +1,11 @@
-extends layout.pug 
+extends layout 
 
-block content
-    h1 Shorts!
+block content 
+    h1  #{user.username}
+    h2 #{user.username}'s Shorts
     each short in shorts
             div= short.title 
-                a(href=`/shorts/${short.id}`) View Short
+                a(href=`/shorts/${short.id}`) Go to short's page
                 if locals.authenticated
                     if short.userId === userId 
                         button.delete(id=`${short.id}`) Delete
@@ -13,6 +14,3 @@ block content
     if locals.authenticated
         div 
             a(href='/shorts/create') Create a short!
-
-
-    

@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-const { User } = require('../db/models');
+const { User, Short, Follow } = require('../db/models');
 const { check, validationResult } = require('express-validator');
 
 const { asyncHandler, csrfProtection, bcrypt } = require('./utils');
 
-const { loginUser, logoutUser } = require('../auth')
+const { loginUser, logoutUser, requireAuth } = require('../auth')
 
 
 /* GET users listing. */
@@ -158,5 +158,26 @@ router.post('/login', csrfProtection, userLoginValidators, asyncHandler(async fu
 router.post('/logout', (req, res) => {
   logoutUser(req, res);
 });
+
+router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+  const user = await User.findByPk(req.params.id);
+  const shorts = await Short.findAll({
+    where: {
+      userId: user.id
+    }
+  });
+  
+  res.render('profile-page', {
+    title: `${user.username} Profile Page`,
+    user,
+    shorts,
+    userId: user.id
+  });
+}));
+
+router.post('/:id(\\d+)/follows', requireAuth, asyncHandler(async (req, res, next) => {
+  const user = await User.findByPk(req.params.id);
+
+}));
 
 module.exports = router;
