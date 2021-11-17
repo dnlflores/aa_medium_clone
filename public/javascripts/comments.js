@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     cancelAdd.addEventListener('click', () => {
         document.querySelector('#content').value = '';
-        addSection.setAttribute('style', 'visibility: hidden');
+        addSection.setAttribute('style', 'visibility: hidden; height: 0px;');
     });
 
     const submitAdd = document.querySelector('.submit-add');
@@ -40,6 +40,6 @@ window.addEventListener('DOMContentLoaded', () => {
         </div>`;
 
         document.querySelector('#content').value = '';
-        addSection.setAttribute('style', 'visibility: hidden');
+        addSection.setAttribute('style', 'visibility: hidden; height: 0px;');
     })
 });
