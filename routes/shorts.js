@@ -1,10 +1,11 @@
 const express = require('express');
 
-const { Short, User } = require('../db/models');
+const { Short, User, Comment } = require('../db/models');
 const { check, validationResult } = require('express-validator');
 
 const { asyncHandler, csrfProtection } = require('./utils');
 const { requireAuth } = require('../auth');
+const commentsRouter = require('./comments');
 
 const router = express.Router();
 
@@ -81,11 +82,17 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     const shortId = req.params.id;
     const short = await Short.findByPk(shortId);
     const user = await User.findByPk(short.userId);
+    const comments = await Comment.findAll({ 
+        where: { shortId }, 
+        include: [{model: User, attributes: ['username']}],
+        order: [['createdAt', 'ASC']]
+    })
     res.render('short-page', {
         title: short.title,
         short,
         username: user.username,
-        userId: user.id
+        userId: user.id,
+        comments,
     });
 }));
 
@@ -124,35 +131,57 @@ router.get('/:id(\\d+)/edit', requireAuth, csrfProtection,
 
 router.post('/:id(\\d+)/edit', requireAuth, shortValidators, csrfProtection,
     asyncHandler(async (req, res) => {
-        const shortId = parseInt(req.params.id, 10);
-        const shortToUpdate = await Short.findByPk(shortId);
+    const shortId = parseInt(req.params.id, 10);
+    const shortToUpdate = await Short.findByPk(shortId);
 
-        const {
-            title,
-            content,
-            userId
-        } = req.body;
+    const {
+        title,
+        content,
+        userId
+    } = req.body;
 
-        const short = {
-            title,
-            content,
-            userId
-        };
+    const short = {
+        title,
+        content,
+        userId
+    };
 
-        const validatorErrors = validationResult(req);
+    const validatorErrors = validationResult(req);
 
-        if (validatorErrors.isEmpty()) {
-            await shortToUpdate.update(short);
-            res.redirect('/');
-        } else {
-            const errors = validatorErrors.array().map((error) => error.msg);
-            res.render('shorts-edit', {
-                title: 'Edit Short',
-                short: { ...short, shortId },
-                errors,
-                csrfToken: req.csrfToken(),
-            });
-        }
-    }));
+    if (validatorErrors.isEmpty()) {
+        await shortToUpdate.update(short);
+        res.redirect('/');
+    } else {
+        const errors = validatorErrors.array().map((error) => error.msg);
+        res.render('shorts-edit', {
+            title: 'Edit Short',
+            short: { ...short, shortId },
+            errors,
+            csrfToken: req.csrfToken(),
+        });
+    }
+}));
+
+router.post('/:id(\\d+)/comments', requireAuth, asyncHandler(async (req, res) => {
+    const userId = req.session.auth.userId;
+    const shortId = req.params.id;
+    const { content } = req.body;
+    
+    const created = await Comment.create({
+        content,
+        userId,
+        shortId
+    });
+    const commentId = created.dataValues.id;
+    const user = await User.findByPk(userId);
+    const username = user.username;
+
+    res.send({
+        content,
+        username,
+        commentId
+    })
+}));
+    
 
 module.exports = router;
