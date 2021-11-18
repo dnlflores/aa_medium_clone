@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 80px;
-    margin-bottom: 80px;
+    justify-content: center;
+    position: absolute;
 }
 
 .short {
@@ -23,6 +23,9 @@
 
 #shorts-main-title {
     font-size: 45px;
+    position: relative;
+    top: 100px;
+    text-align: center;
 }
 
 .author-title {
@@ -43,143 +46,37 @@
     border-bottom: 5px solid black;
 }
 
-body {
-    background-color: rgba(41,145,120,255);
-    font-family: 'Oswald', sans-serif;
+.delete-short-buttons {
+    color: green;
 }
 
-#bottom-nav-shorts {
+#right {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    top: 0;
+    left: 1040px;
+    z-index: 104;
 }
 
-#create-short {
-    display: inline-block;
-    border: none;
-    padding: 1rem 2rem;
-    margin: 0;
-    text-decoration: none;
-    background: blue;
-    color: rgba(240,43,50,255);
-    font-size: 1rem;
-    cursor: pointer;
-    text-align: center;
-    transition: background 250ms ease-in-out, 
-                transform 150ms ease;
-    border-radius: 5px;
-}
-    
-#create-short:hover,
-#create-short:focus {
-    background: #0053ba;
-}
-
-#create-short:focus {
-    outline: 1px solid rgba(240,43,50,255);
-    outline-offset: -4px;
-}
-
-#create-short:active {
-    transform: scale(0.99);
+#left {
+    position: relative;
+    z-index: 105;
 }
 
 #back-to-home {
-    display: inline-block;
-    border: none;
-    padding: 1rem 2rem;
-    margin: 0;
-    text-decoration: none;
-    background: blue;
-    color: rgba(240,43,50,255);
-    font-size: 1rem;
-    cursor: pointer;
-    text-align: center;
-    transition: background 250ms ease-in-out, 
-                transform 150ms ease;
-    border-radius: 5px;
+    color: #B3B5B2;
 }
-    
+
 #back-to-home:hover,
 #back-to-home:focus {
-    background: #0053ba;
+  background: gray;
 }
 
-#back-to-home:focus {
-    outline: 1px solid rgba(240,43,50,255);
-    outline-offset: -4px;
-}
-
-#back-to-home:active {
-    transform: scale(0.99);
-}
-
-#create-short>a, #back-to-home>a {
-    text-decoration: none;
-}
-
-.short-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 65px;
-}
-
-.delete-short-buttons {
-    display: inline-block;
-    border: none;
-    padding: 10px 20px;
-    margin: 0;
-    text-decoration: none;
-    background: red;
-    color: black;
-    font-size: 1rem;
-    cursor: pointer;
-    text-align: center;
-    transition: background 250ms ease-in-out, 
-                transform 150ms ease;
-    margin-left: 650px;
-    border-radius: 5px;
-}
-    
-.delete-short-buttons:hover,
-.delete-short-buttons:focus {
-    background: #df4646;
-}
-
-.delete-short-buttons:focus {
-    outline: 1px solid rgb(255, 95, 95);
-    outline-offset: -4px;
-}
-
-.delete-short-buttons:active {
-    transform: scale(0.99);
-}
-
-.view-short-link {
-    display: inline-block;
-    border: none;
-    padding: 10px 20px;
-    margin: 0;
-    text-decoration: none;
-    background: blue;
-    color: rgba(240,43,50,255);
-    font-size: 1rem;
-    cursor: pointer;
-    text-align: center;
-    transition: background 250ms ease-in-out, 
-                transform 150ms ease;
-    border-radius: 5px;
-}
-    
-.view-short-link:hover,
-.view-short-link:focus {
-    background: #0053ba;
-}
-
-.view-short-link:focus {
-    outline: 1px solid rgba(240,43,50,255);
-    outline-offset: -4px;
-}
-
-.view-short-link:active {
-    transform: scale(0.99);
+#background-div {
+    position: fixed;
+    width: 100%;
+    height: 88px;
+    background-color: #7CA27F;
+    z-index: 100;
 }

@@ -6,18 +6,19 @@ html
         link(rel='stylesheet' href='/stylesheets/reset.css')
         link(rel="preconnect" href="https://fonts.googleapis.com")
         link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
-        link(href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet")
         script(src='/javascripts/short-delete.js')
         script(src='/javascripts/follow.js')
         script(src='/javascripts/likes.js')
   body
-    if locals.authenticated
-      div#header
-        span Welcome #{user.username}!
-        form(action='/users/logout' method='post')
-          button Logout
-    else
-      span#login
-        a(href='/users/login') Login
-        a(href='/users/register') Register
-    block content
+    block body
+      if locals.authenticated
+        ul#logged-in-nav
+          li: p#welcome-user Welcome #{user.username}!
+          li: form(action='/users/logout' method='post'): button#logout-button Logout
+      else
+        ul#logged-out-nav
+          li: a(href='/users/login'): button#login-button Login
+          li: a(href='/users/register'): button#register-button Register
+        
+block content

@@ -2,26 +2,40 @@ extends layout.pug
 
 include utils.pug
 
+block body 
+    div#background-div
+    if locals.authenticated
+        div#logged-in-nav
+            ul#left
+                li: p#welcome-user Welcome #{user.username}!
+                li: form(action='/users/logout' method='post'): button#logout-button Logout
+            ul#right
+                li: a(href='/shorts/create'): button#create-short Create a short!
+                li: a(href='/'): button#back-to-home Back to Home!
+    else
+        div#logged-out-nav
+            ul#left
+                li: a(href='/users/login'): button#login-button Login
+                li: a(href='/users/register'): button#register-button Register
+            ul#right 
+                li: a(href='/'): button#back-to-home Back to Home!
+        
 block content
     link(rel='stylesheet' href='/stylesheets/shorts.css')
     h1#shorts-main-title Shorts!
-    div#shorts-list-div
-        each short in shorts
-            div.short(id=`short-div-${short.id}`)
-                h2.short-title= short.title 
-                div.short-author
-                    +getUsername(short.userId, users)
-                div.short-buttons
-                    div.view-short-div
-                        a.view-short-link(href=`/shorts/${short.id}`) View Short
-                    div.delete-short
-                        if locals.authenticated
-                            if short.userId === userId  
-                                button.delete-short-buttons(id=`${short.id}`) Delete
-    div#bottom-nav-shorts
-        if locals.authenticated
-            a#create-short(href='/shorts/create') Create a short!
-        a#back-to-home(href='/') Back to Home!
+        div#shorts-list-div
+            each short in shorts
+                div.short(id=`short-div-${short.id}`)
+                    h2.short-title= short.title 
+                    div.short-author
+                        +getUsername(short.userId, users)
+                    div.short-buttons
+                        div.view-short-div
+                            a.view-short-link(href=`/shorts/${short.id}`) View Short
+                        div.delete-short
+                            if locals.authenticated
+                                if short.userId === userId  
+                                    button.delete-short-buttons(id=`${short.id}`) Delete
 
 
     
