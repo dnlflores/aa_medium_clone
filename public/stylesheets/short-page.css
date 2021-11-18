@@ -43,7 +43,6 @@ body {
     min-height: 100%;
     padding: 10px;
     width: 100%;
-    color: white;
     display:grid;
     grid-template-columns: 1fr 3fr 1fr;
     grid-column-gap: 10px
@@ -52,6 +51,7 @@ body {
 .right-bar {
     margin-top: 150px;
     grid-column-start: 3;
+    color: rgba(172, 177, 175, 255);
 }
 
 .right-bar button {
