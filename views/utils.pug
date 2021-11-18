@@ -10,7 +10,7 @@ mixin field(labelText, fieldName, fieldValue, fieldType = 'text', placeholder=nu
   div
     if fieldType === 'textarea'
       label(for=fieldName)= labelText
-      textarea(name=fieldName)= fieldValue
+      textarea(name=fieldName rows=5)= fieldValue
     else
       label(for=fieldName)= labelText
       input(type=fieldType id=fieldName name=fieldName value=fieldValue placeholder=placeholder)
