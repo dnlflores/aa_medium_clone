@@ -97,7 +97,6 @@ button:active {
 body {
   background-image: linear-gradient(to right, #AABA7C, #7CA27F, #3C8870);
   height: 100%;
-  padding: 50px;
 }
 
 html {
