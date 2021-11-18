@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 await fetch(`/comments/${id}`, {
                     method: 'DELETE',
                 });
-                button.parentElement.innerHTML = '';
+                button.parentElement.remove();
             });
         });
     }
