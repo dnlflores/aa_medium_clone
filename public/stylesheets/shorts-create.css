@@ -10,12 +10,6 @@ body {
     color: rgba(172, 177, 175, 255);
 }
 
-#header {
-    position: absolute;
-    right: 50px;
-    top: 25px;
-}
-
 #form-div{
     background-color: rgba(87, 140, 126, 255);
     border-radius: 10px;
@@ -80,7 +74,7 @@ textarea:focus {
 
 #logged-in-nav {
     top: 0;
-    left: 0;
+    left: 10px;
 }
 
 #logout-button {
@@ -105,3 +99,4 @@ textarea:focus {
 #cancel-short-button:focus {
     color: gray;
 }
+

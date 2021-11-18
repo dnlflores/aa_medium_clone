@@ -13,6 +13,7 @@ body, header, nav {
   outline: 0;
   font-weight: normal;
   list-style-type: none;
+  text-decoration: none;
 }
 
 h1 {
@@ -36,7 +37,6 @@ h1 {
 #logout-button {
   position: relative;
   color: #B3B5B2;
-  bottom: 30px;
 }
 
 #logout-button:hover,
@@ -95,10 +95,11 @@ button:active {
 }
 
 body {
-  background-image: linear-gradient(to right, #AABA7C, #7CA27F, #3C8870);
+  background: linear-gradient(to top left, #AABA7C, #7CA27F, #3C8870);
+  background-attachment: fixed;
 }
 
-html, body {
+html{
   height: 100%
 }
 
@@ -108,4 +109,15 @@ html, body {
   height: 88px;
   background-color: #7CA27F;
   z-index: 100;
+}
+
+#left {
+  position: relative;
+  z-index: 105;
+  left: 10%;
+}
+
+#buffer { 
+  height: 100px;
+  position: relative;
 }
