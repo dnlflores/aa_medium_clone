@@ -1,10 +1,18 @@
 extends layout
+
 include utils
+
+block head
+    link(rel='stylesheet' href='/stylesheets/edit-short.css')
 block content
-    form(action=`/shorts/${short.id}/edit` method='POST')
+  h2 Edit Short:
+  div#form-div
       +validationErrorSummary(errors)
-      input(type='hidden' name='_csrf' value=csrfToken)
-      +field('Title', 'title', short.title)
-      +field('Content', 'content', short.content, 'textarea')
-      button Submit 
-      a(href=`/shorts/${short.id}`) Cancel
+      form(action=`/shorts/${short.id}/edit` method='POST')
+          input(type='hidden' name='_csrf' value=csrfToken)
+          div#title-div
+            +field('Title', 'title', short.title)
+          div#div-content
+            +field('Content', 'content', short.content, 'textarea')
+          button Submit
+          a(href=`/shorts/${short.id}`) Cancel
