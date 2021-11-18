@@ -66,13 +66,15 @@ router.get('/', asyncHandler(async (req, res, next) => {
         order: [['updatedAt', 'DESC']],
         limit: 15
     });
-
+    const users = await User.findAll();
+    
     if (req.session.auth) userId = req.session.auth.userId;
 
     res.render('shorts', {
         title: "Shorts",
         shorts,
-        userId
+        userId,
+        users
     });
 }));
 
