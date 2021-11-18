@@ -1,0 +1,44 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#header {
+    width: 75%
+}
+
+#short-form {
+    border: 2px solid blue;
+    padding: 5px;
+    width: 75%;
+}
+
+#title-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#title-div label {
+    display: block;
+}
+#title-div input {
+    width: 100%
+}
+
+#title-div div, #content-div div {
+    width: 100%;
+}
+
+#content-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#content-div label {
+    display: block;
+}
+#content-div textarea {
+    width: 100%;
+    max-width: 100%;
+}

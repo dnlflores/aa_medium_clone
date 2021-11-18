@@ -1,10 +1,14 @@
 extend layout 
 include utils
+block head 
+    link(rel='stylesheet' href='/stylesheets/shorts-create.css')
 block content
     +validationErrorSummary(errors)
-    form(action=`/shorts/create` method='post')
+    form(action=`/shorts/create` method='post' id='short-form')
         input(type='hidden' name='_csrf' value=csrfToken)
-        +field('Title', 'title', short.title)
-        +field('Content', 'content', short.content, 'textarea')
+        div#title-div
+            +field('Title', 'title', short.title)
+        div#content-div
+            +field('Content', 'content', short.content, 'textarea')
         button Create Short
         a(href='/shorts') Cancel

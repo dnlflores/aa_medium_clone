@@ -9,9 +9,10 @@ html
         script(src='/javascripts/likes.js')
   body
     if locals.authenticated
-      span Welcome #{user.username}!
-      form(action='/users/logout' method='post')
-        button Logout
+      div#header
+        span Welcome #{user.username}!
+        form(action='/users/logout' method='post')
+          button Logout
     else
       span
         a(href='/users/login') Login
