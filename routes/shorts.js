@@ -66,13 +66,15 @@ router.get('/', asyncHandler(async (req, res, next) => {
         order: [['updatedAt', 'DESC']],
         limit: 15
     });
-
+    const users = await User.findAll();
+    
     if (req.session.auth) userId = req.session.auth.userId;
 
     res.render('shorts', {
         title: "Shorts",
         shorts,
-        userId
+        userId,
+        users
     });
 }));
 
@@ -133,7 +135,6 @@ router.get('/:id(\\d+)/edit', requireAuth, csrfProtection,
     asyncHandler(async (req, res) => {
         const shortId = parseInt(req.params.id, 10);
         const short = await Short.findByPk(shortId);
-        console.log(res.locals.user)
         const userId = req.session.auth.userId;
 
         res.render('shorts-edit', {
@@ -165,7 +166,7 @@ router.post('/:id(\\d+)/edit', requireAuth, shortValidators, csrfProtection,
 
         if (validatorErrors.isEmpty()) {
             await shortToUpdate.update(short);
-            res.redirect('/');
+            res.redirect(`/shorts/${shortId}`);
         } else {
             const errors = validatorErrors.array().map((error) => error.msg);
             res.render('shorts-edit', {
