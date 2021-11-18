@@ -20,13 +20,14 @@ block content
             a(href='/shorts'): button#back-to-shorts-button Back to Shorts!
             div
                 p#likeCount Likes: #{likes.length}
-            div
-                if !like
-                    button#like-button(class=`${short.id} likes`) Like
-                    button#unlike-button(class=`${short.id} deleteLikes hidden`) Unlike
-                else
-                    button#like-button(class=`${short.id} likes hidden`) Like
-                    button#unlike-button(class=`${short.id} deleteLikes`) Unlike
+            if locals.authenticated
+                div
+                    if !like
+                        button#like-button(class=`${short.id} likes`) Like
+                        button#unlike-button(class=`${short.id} deleteLikes hidden`) Unlike
+                    else
+                        button#like-button(class=`${short.id} likes hidden`) Like
+                        button#unlike-button(class=`${short.id} deleteLikes`) Unlike
         div.right-bar
             if locals.authenticated
                 include comments

@@ -159,7 +159,7 @@ router.post('/logout', (req, res) => {
 });
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
-  let browserId = 0;
+  let userId = 0;
   const profileUser = await User.findByPk(req.params.id);
   const shorts = await Short.findAll({
     where: {
@@ -178,12 +178,12 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
   });
   
   if (req.session.auth) {
-    browserId = req.session.auth.userId;
+    userId = req.session.auth.userId;
   }
 
   const findFollow = await Follow.findAll({
     where: {
-      followId: browserId,
+      followId: userId,
       followedId: profileUser.id
     }
   });
@@ -194,9 +194,8 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     title: `${profileUser.username} Profile Page`,
     profileUser,
     shorts,
-    userId: req.session.auth.userId,
+    userId,
     follow,
-    browserId,
     followings: followings.length,
     followers: followers.length
   });

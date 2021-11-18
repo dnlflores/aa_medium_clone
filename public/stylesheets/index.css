@@ -84,3 +84,7 @@ h1 {
     top: 20px;
     position: relative;
 }
+
+#welcome-user {
+    left: 10px;
+}
