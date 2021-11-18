@@ -1,6 +1,6 @@
 mixin validationErrorSummary(errors)
   if errors
-    div
+    div.errors
       p The following error(s) occurred:
       ul
         each error in errors
@@ -16,6 +16,6 @@ mixin field(labelText, fieldName, fieldValue, fieldType = 'text', placeholder=nu
       input(type=fieldType id=fieldName name=fieldName value=fieldValue placeholder=placeholder)
 
 mixin getUsername(userId, users)
-  each user in users 
+  each user in users
     if userId === user.id
       h3.author-title: a.author-links(href=`/users/${user.id}`)= user.username
