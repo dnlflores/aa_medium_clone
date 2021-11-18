@@ -37,7 +37,6 @@ router.put('/:id(\\d+)', requireAuth, asyncHandler(async (req, res, next) => {
 router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     const commentId = req.params.id;
     const comment = await Comment.findByPk(commentId);
-    console.log(comment)
     await comment.destroy();
     res.send();
 }));
