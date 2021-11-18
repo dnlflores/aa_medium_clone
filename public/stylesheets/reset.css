@@ -42,7 +42,9 @@ h1 {
 }
 
 #logout-button {
+  position: relative;
   color: #B3B5B2;
+  bottom: 30px;
 }
 
 #logout-button:hover,
@@ -70,6 +72,9 @@ background: gray;
 
 #welcome-user {
   font-size: 20px;
+  color: #AABA7C;
+  position: relative;
+  bottom: 10px;
 }
 
 button {
@@ -99,4 +104,9 @@ button:active {
 
 body {
   background-image: linear-gradient(to right, #AABA7C, #7CA27F, #3C8870);
+  height: 100%;
+}
+
+html {
+  height: 100%
 }

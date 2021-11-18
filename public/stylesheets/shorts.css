@@ -4,46 +4,47 @@
     align-items: center;
     justify-content: center;
     position: absolute;
+    left: 13%;
 }
 
 .short {
     padding: 10px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     width: 900px;
     height: 200px;
-    border: 5px solid black;
-    border-bottom: none;
+    border: 5px solid #B3B5B2;
+    margin: 10px;
+    border-radius: 5px;
+    z-index: 50;
+    color: rgba(87, 140, 126, 255);
 }
 
 .short-title {
     font-size: 30px;
+    text-decoration: none;
 }
 
 #shorts-main-title {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
     font-size: 45px;
-    position: relative;
-    top: 100px;
     text-align: center;
+    color: rgba(87, 140, 126, 255);
+    z-index: 120;
 }
 
 .author-title {
-    color: rgba(38,27,85,255);
+    color: #B3B5B2;
     font-size: 15px;
     margin-left: 10px;
 }
 
 .author-links {
     text-decoration: none;
-}
-
-#short-div-4 {
-    border-bottom: 5px solid black;
-}
-
-#short-div-15 {
-    border-bottom: 5px solid black;
 }
 
 .delete-short-buttons {
@@ -53,24 +54,17 @@
 #right {
     display: flex;
     align-items: center;
+    flex-direction: column;
     position: relative;
     top: 0;
-    left: 1040px;
+    left: 425%;
     z-index: 104;
 }
 
 #left {
     position: relative;
     z-index: 105;
-}
-
-#back-to-home {
-    color: #B3B5B2;
-}
-
-#back-to-home:hover,
-#back-to-home:focus {
-  background: gray;
+    left: 10%;
 }
 
 #background-div {
@@ -79,4 +73,21 @@
     height: 88px;
     background-color: #7CA27F;
     z-index: 100;
+}
+
+#create-short {
+    position: relative;
+}
+
+#back-to-home {
+    position: relative;
+}
+
+#short-list-container {
+    position: relative;
+}
+
+#buffer { 
+    height: 100px;
+    position: relative;
 }

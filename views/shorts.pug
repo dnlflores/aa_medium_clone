@@ -22,16 +22,16 @@ block body
         
 block content
     link(rel='stylesheet' href='/stylesheets/shorts.css')
+    div#buffer
     h1#shorts-main-title Shorts!
+    div#short-list-container
         div#shorts-list-div
             each short in shorts
                 div.short(id=`short-div-${short.id}`)
-                    h2.short-title= short.title 
+                    h2: a.short-title(href=`/shorts/${short.id}`)= short.title 
                     div.short-author
                         +getUsername(short.userId, users)
                     div.short-buttons
-                        div.view-short-div
-                            a.view-short-link(href=`/shorts/${short.id}`) View Short
                         div.delete-short
                             if locals.authenticated
                                 if short.userId === userId  
