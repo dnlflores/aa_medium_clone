@@ -58,34 +58,6 @@ h1 {
     margin-bottom: 15px;
 }
 
-#header {
-    position: absolute;
-    right: 50px;
-    top: 50px;
-}
-
-#header button {
-    color: rgba(172, 177, 175, 255);
-    padding: 10px;
-    font-size: 35px;
-    background: none;
-    border: 3px solid rgba(172, 177, 175, 255);
-    border-radius: 10px;
-}
-
-#header button:hover {
-    border-color: rgba(172, 188, 139, 255);
-}
-
-#header form {
-    margin-left: 10px;
-    display: inline;
-}
-
-#header span {
-    font-size: 30px;
-}
-
 #profile {
     margin-top: 30px;
 }
@@ -99,4 +71,26 @@ h1 {
 
 #profile a:hover {
     border-color: rgba(172, 188, 139, 255);
+}
+
+#logged-in-nav,
+#logged-out-nav {
+    top: 0;
+    left: 0;
+}
+
+#background-div {
+    top: 0;
+}
+
+#logout-button {
+    bottom:0;
+    top: 40px;
+    right: 105px;
+}
+
+#login-button, 
+#register-button {
+    top: 20px;
+    position: relative;
 }

@@ -1,6 +1,6 @@
 extend layout 
 include utils
-block head 
+append head 
     link(rel='stylesheet' href='/stylesheets/shorts-create.css')
 block content
     h2 Create a short:
@@ -12,5 +12,5 @@ block content
                 +field('Title', 'title', short.title)
             div#content-div
                 +field('Content', 'content', short.content, 'textarea')
-            button Create Short
-            a(href='/shorts') Cancel
+            button#create-short-button(type='submit') Create Short
+        a(href='/shorts'): button#cancel-short-button Cancel
