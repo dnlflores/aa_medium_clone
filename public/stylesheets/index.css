@@ -63,7 +63,8 @@ h1 {
     border-color: rgba(172, 188, 139, 255);
 }
 
-#logged-in-nav {
+#logged-in-nav,
+#logged-out-nav {
     top: 0;
     left: 0;
 }
@@ -76,4 +77,10 @@ h1 {
     bottom:0;
     top: 40px;
     right: 105px;
+}
+
+#login-button, 
+#register-button {
+    top: 20px;
+    position: relative;
 }

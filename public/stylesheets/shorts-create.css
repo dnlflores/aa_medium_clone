@@ -8,36 +8,12 @@ body {
     align-items: center;
     justify-content: center;
     color: rgba(172, 177, 175, 255);
-    background-image: linear-gradient(35deg, rgba(172, 188, 139, 255), 50%, rgba(132, 164, 139, 255));
 }
 
 #header {
     position: absolute;
     right: 50px;
     top: 25px;
-}
-
-#header button {
-    color: rgba(87, 140, 126, 255);
-    padding: 10px;
-    font-size: 35px;
-    background: none;
-    border: 3px solid rgba(87, 140, 126, 255);
-    border-radius: 10px;
-}
-
-#header button:hover {
-    border-color: rgba(172, 188, 139, 255);
-}
-
-#header form {
-    margin-left: 10px;
-    display: inline;
-}
-
-#header span {
-    color: rgba(87, 140, 126, 255);
-    font-size: 30px;
 }
 
 #form-div{
@@ -97,29 +73,35 @@ textarea:focus {
     outline: none;
     border: 4px solid rgba(172,188,139,255);
 }
-button {
-    color: rgba(172, 177, 175, 255);
-    padding: 10px;
-    font-size: 20px;
-    background: none;
-    border: 3px solid rgba(172, 177, 175, 255);
-    border-radius: 10px;
-    margin-right: 10px;
+
+#background-div {
+    top: 0;
 }
 
-button:hover {
-    border-color: rgba(172, 188, 139, 255);
-}
-a {
-    color: rgba(172, 177, 175, 255);
-    padding: 10px;
-    font-size: 20px;
-    text-decoration: none;
-    border: 3px solid rgba(172, 177, 175, 255);
-    border-radius: 10px;
-    margin-right: 10px;
+#logged-in-nav {
+    top: 0;
+    left: 0;
 }
 
-a:hover {
-    border-color: rgba(172, 188, 139, 255);
+#logout-button {
+    bottom:0;
+    top: 40px;
+    right: 105px;
+}
+
+#create-cancel-div {
+    display: flex; 
+    justify-content: space-between;
+}
+
+#create-short-button,
+#cancel-short-button {
+    color: #B3B5B2
+}
+
+#create-short-button:hover,
+#cancel-short-button:hover,
+#create-short-button:focus,
+#cancel-short-button:focus {
+    color: gray;
 }
