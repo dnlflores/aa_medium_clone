@@ -166,7 +166,7 @@ router.post('/:id(\\d+)/edit', requireAuth, shortValidators, csrfProtection,
 
         if (validatorErrors.isEmpty()) {
             await shortToUpdate.update(short);
-            res.redirect('/');
+            res.redirect(`/shorts/${shortId}`);
         } else {
             const errors = validatorErrors.array().map((error) => error.msg);
             res.render('shorts-edit', {
