@@ -1,26 +1,32 @@
 extends layout.pug
 
+block head 
+    link(rel='stylesheet' href='/stylesheets/short-page.css')
+
 block content
-    h1= short.title
-    p By:
-        a(href=`/users/${short.userId}`) #{username}
-    div
-        p= short.content
-    if locals.authenticated
-        if short.userId === userId
+    div.grid
+        div.main-content
+            h1= short.title
+            p By:
+                a(href=`/users/${short.userId}`) #{username}
             div
-                a(href=`/shorts/${short.id}/edit`) Edit the short
-                button.delete-page(id=`${short.id}`) Delete
-    div
-        a(href='/shorts') Back to Shorts!
-    div
-        p#likeCount Likes: #{likes.length}
-    div
-        if !like
-            button(class=`${short.id} likes`) Like
-            button(class=`${short.id} deleteLikes` hidden) Unlike
-        else
-            button(class=`${short.id} likes` hidden) Like
-            button(class=`${short.id} deleteLikes`) Unlike
-    div
-        include comments
+                p= short.content
+            if locals.authenticated
+                if short.userId === userId
+                    div
+                        a(href=`/shorts/${short.id}/edit`) Edit the short
+                        button.delete-page(id=`${short.id}`) Delete
+        div.left-bar
+            div
+                a(href='/shorts') Back to Shorts!
+            div
+                p#likeCount Likes: #{likes.length}
+            div
+                if !like
+                    button(class=`${short.id} likes`) Like
+                    button(class=`${short.id} deleteLikes` hidden) Unlike
+                else
+                    button(class=`${short.id} likes` hidden) Like
+                    button(class=`${short.id} deleteLikes`) Unlike
+        div.right-bar
+            include comments

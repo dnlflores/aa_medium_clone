@@ -14,7 +14,7 @@ html
         form(action='/users/logout' method='post')
           button Logout
     else
-      span
+      span#login
         a(href='/users/login') Login
         a(href='/users/register') Register
     block content

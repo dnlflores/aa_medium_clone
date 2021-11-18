@@ -1,5 +1,8 @@
 extends layout 
 
+block head 
+    link(src='/stylesheets/short-page.css')
+
 block content 
     h1  #{profileUser.username}
     p#followers Followers: #{followers}
