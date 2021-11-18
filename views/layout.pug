@@ -9,11 +9,12 @@ html
         script(src='/javascripts/likes.js')
   body
     if locals.authenticated
-      span Welcome #{user.username}!
-      form(action='/users/logout' method='post')
-        button Logout
+      div#header
+        span Welcome #{user.username}!
+        form(action='/users/logout' method='post')
+          button Logout
     else
-      span
+      span#login
         a(href='/users/login') Login
         a(href='/users/register') Register
     block content

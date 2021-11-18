@@ -1,0 +1,83 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid rgba(240,43,50,255);
+    border-radius: 10px 10px 0 0;
+    border-bottom: none;
+    padding: 10px;
+    width: 75%;
+    background-color: rgba(38,27,85,255);
+    color: white;
+    font-size: 25px;
+    padding-bottom: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+#form-div{
+    border: 2px solid rgba(240,43,50,255);
+    border-radius: 0 0 10px 10px;
+    border-top: none;
+    padding: 10px;
+    width: 75%;
+    background-color: rgba(78,67,125,255);
+    color: white;
+}
+
+#form-div h2{
+    font-size: 45px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+#title-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#title-div label {
+    font-size: 30px;
+    display: block;
+}
+#title-div input {
+    border: 2px solid rgba(240,43,50,255);
+    border-radius: 5px;
+    width: 98%
+}
+
+#title-div div, #content-div div {
+    width: 100%;
+}
+
+#content-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#content-div label {
+    font-size: 30px;
+    display: block;
+}
+#content-div textarea {
+    border: 2px solid rgba(240,43,50,255);
+    border-radius: 5px;
+    width: 98%;
+    max-width: 98%;
+}
+button {
+    font-size: 25px;
+    background-color: rgba(240,43,50,255);
+    color: white;
+}
