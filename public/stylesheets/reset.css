@@ -1,6 +1,5 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -9,6 +8,7 @@ a {
 
 * {
   box-sizing: border-box;
+  font-family: 'Oswald', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6, a, ol, li, ul, div, span,
@@ -20,8 +20,93 @@ body, header, nav {
   padding: 0;
   outline: 0;
   font-weight: normal;
+  list-style-type: none;
 }
 
 h1 {
   font-size: 2rem;
+}
+
+#logged-out-nav {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 101;
+}
+
+#logged-in-nav {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 102;
+}
+
+#logout-button {
+  position: relative;
+  color: #B3B5B2;
+  bottom: 30px;
+}
+
+#logout-button:hover,
+#logout-button:focus {
+background: gray;
+}
+
+#login-button {
+  color: #B3B5B2;
+}
+
+#login-button:hover,
+#login-button:focus {
+background: gray;
+}
+
+#register-button {
+  color: #B3B5B2;
+}
+
+#register-button:hover,
+#register-button:focus {
+background: gray;
+}
+
+#welcome-user {
+  font-size: 20px;
+  color: #AABA7C;
+  position: relative;
+  bottom: 10px;
+}
+
+button {
+  display: inline-block;
+  border: none;
+  padding: 10px 20px;
+  margin: 0;
+  text-decoration: none;
+  background: transparent;
+  color: gray;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, 
+              transform 150ms ease;
+  border-radius: 5px;
+}
+  
+button:hover,
+button:focus {
+  background: #B3B5B2;
+}
+
+button:active {
+  transform: scale(0.99);
+}
+
+body {
+  background-image: linear-gradient(to right, #AABA7C, #7CA27F, #3C8870);
+  height: 100%;
+}
+
+html {
+  height: 100%
 }
