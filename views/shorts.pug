@@ -1,17 +1,19 @@
 extends layout.pug 
 
 block content
-    h1 Shorts!
+    h1#shorts-title Shorts!
     each short in shorts
-            div= short.title 
-                a(href=`/shorts/${short.id}`) View Short
-                if locals.authenticated
-                    if short.userId === userId  
-                        button.delete(id=`${short.id}`) Delete
-    div 
+            div(id=`short-div-${short.id}`)= short.title 
+                div#view-short-link
+                    a(href=`/shorts/${short.id}`) View Short
+                div#delete-short
+                    if locals.authenticated
+                        if short.userId === userId  
+                            button.delete-short-buttons(id=`${short.id}`) Delete
+    div#back-to-home 
         a(href='/') Back to Home!
     if locals.authenticated
-        div 
+        div#create-short 
             a(href='/shorts/create') Create a short!
 
 

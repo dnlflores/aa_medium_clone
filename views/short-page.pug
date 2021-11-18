@@ -29,4 +29,5 @@ block content
                     button(class=`${short.id} likes` hidden) Like
                     button(class=`${short.id} deleteLikes`) Unlike
         div.right-bar
-            include comments
+            if locals.authenticated
+                include comments

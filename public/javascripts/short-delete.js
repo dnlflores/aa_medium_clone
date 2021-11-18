@@ -1,11 +1,13 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const deleteButtons = Array.from(document.querySelectorAll('.delete'));
+    const deleteButtons = Array.from(document.getElementsByClassName('delete-short-buttons'));
+
     deleteButtons.forEach(button => {
         button.addEventListener('click', () => {
             fetch(`/shorts/${button.id}`, {
                 method: 'DELETE',
             });
-            button.parentElement.innerHTML = '';
+            const shortDiv = document.getElementById(`short-div-${button.id}`);
+            shortDiv.remove();
         });
     });
 
@@ -16,7 +18,9 @@ window.addEventListener('DOMContentLoaded', () => {
             fetch(`/shorts/${event.target.id}`, {
                 method: 'DELETE',
             }).then(res => {
-                if (res.redirected) {
+                console.log(res.redirected, 'test');
+                if (!res.redirected) {
+                    console.log('HEREEEEEE');
                     window.location.href = '/shorts'
                 }
             });
