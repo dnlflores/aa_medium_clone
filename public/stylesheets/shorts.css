@@ -45,6 +45,7 @@
 
 body {
     background-color: rgba(41,145,120,255);
+    font-family: 'Oswald', sans-serif;
 }
 
 #bottom-nav-shorts {
@@ -65,8 +66,6 @@ body {
     text-align: center;
     transition: background 250ms ease-in-out, 
                 transform 150ms ease;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     border-radius: 5px;
 }
     
@@ -97,8 +96,6 @@ body {
     text-align: center;
     transition: background 250ms ease-in-out, 
                 transform 150ms ease;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     border-radius: 5px;
 }
     
@@ -139,8 +136,6 @@ body {
     text-align: center;
     transition: background 250ms ease-in-out, 
                 transform 150ms ease;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     margin-left: 650px;
     border-radius: 5px;
 }
@@ -172,8 +167,6 @@ body {
     text-align: center;
     transition: background 250ms ease-in-out, 
                 transform 150ms ease;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     border-radius: 5px;
 }
     
