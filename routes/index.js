@@ -7,8 +7,8 @@ const { asyncHandler } = require('./utils');
 router.get('/', asyncHandler(async (req, res, next) => {
   if (res.locals.authenticated) {
     const user = await User.findByPk(req.session.auth.userId);
-    res.render('index', { title: 'Shorts Home!', user });
-  } else res.render('index', { title: 'Shorts Home!' });
+    res.render('index', { title: 'Welcome To Shorts!', user });
+  } else res.render('index', { title: 'Welcome To Shorts!' });
 }));
 
 module.exports = router;
