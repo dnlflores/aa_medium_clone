@@ -13,7 +13,7 @@ div.comment-section
                 p= comment.User.username
                 pre= comment.content
                 if locals.authenticated
-                    if short.userId === userId
+                    if comment.userId === userId
                             button.edit-comment(id=`edit-${comment.id}`) Edit
                             button.delete-comment(id=`delete-${comment.id}`) Delete
                             
