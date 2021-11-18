@@ -18,9 +18,7 @@ window.addEventListener('DOMContentLoaded', () => {
             fetch(`/shorts/${event.target.id}`, {
                 method: 'DELETE',
             }).then(res => {
-                console.log(res.redirected, 'test');
                 if (!res.redirected) {
-                    console.log('HEREEEEEE');
                     window.location.href = '/shorts'
                 }
             });

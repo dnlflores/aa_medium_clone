@@ -1,8 +1,5 @@
 extends layout.pug
 
-block head 
-    link(rel='stylesheet' href='/stylesheets/short-page.css')
-
 block content
     div.grid
         div.main-content
@@ -31,3 +28,4 @@ block content
         div.right-bar
             if locals.authenticated
                 include comments
+    link(rel='stylesheet' href='/stylesheets/short-page.css')

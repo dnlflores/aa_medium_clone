@@ -135,7 +135,6 @@ router.get('/:id(\\d+)/edit', requireAuth, csrfProtection,
     asyncHandler(async (req, res) => {
         const shortId = parseInt(req.params.id, 10);
         const short = await Short.findByPk(shortId);
-        console.log(res.locals.user)
         const userId = req.session.auth.userId;
 
         res.render('shorts-edit', {
