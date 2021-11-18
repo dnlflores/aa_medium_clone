@@ -69,7 +69,7 @@ background: gray;
   bottom: 10px;
 }
 
-button, a {
+button {
   display: inline-block;
   border: none;
   padding: 10px 20px;
@@ -85,8 +85,8 @@ button, a {
   border-radius: 5px;
 }
   
-button, a:hover,
-button, a:focus {
+button:hover,
+button:focus {
   background: #B3B5B2;
 }
 
