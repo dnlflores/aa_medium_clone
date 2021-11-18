@@ -80,6 +80,8 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     const shortId = req.params.id;
     const short = await Short.findByPk(shortId);
     const user = await User.findByPk(short.userId);
+    let browserId = 0;
+    if(req.session.auth) browerId = req.session.auth.userId;
     const comments = await Comment.findAll({
         where: { shortId },
         include: [{ model: User, attributes: ['username'] }],
@@ -94,7 +96,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     const like = await Like.findOne({
         where: {
             shortId,
-            userId: req.session.auth.userId
+            userId: browserId
         }
     });
 
@@ -102,7 +104,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
         title: short.title,
         short,
         username: user.username,
-        userId: req.session.auth.userId,
+        userId: browserId,
         comments,
         likes,
         like // go to pug

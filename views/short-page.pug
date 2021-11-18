@@ -16,11 +16,13 @@ block content
     div
         p#likeCount Likes: #{likes.length}
     div
-        if !like
-            button(class=`${short.id} likes`) Like
-            button(class=`${short.id} deleteLikes` hidden) Unlike
-        else
-            button(class=`${short.id} likes` hidden) Like
-            button(class=`${short.id} deleteLikes`) Unlike
+        if locals.authenticated
+            if !like
+                button(class=`${short.id} likes`) Like
+                button(class=`${short.id} deleteLikes` hidden) Unlike
+            else
+                button(class=`${short.id} likes` hidden) Like
+                button(class=`${short.id} deleteLikes`) Unlike
     div
-        include comments
+        if locals.authenticated
+            include comments
