@@ -13,11 +13,11 @@ block content
                 p= short.content
             if locals.authenticated
                 if short.userId === userId
-                    div
+                    div#edit-options
                         a(href=`/shorts/${short.id}/edit`) Edit the short
                         button.delete-page(id=`${short.id}`) Delete
         div.left-bar
-            div
+            div#back-to-shorts
                 a(href='/shorts') Back to Shorts!
             div
                 p#likeCount Likes: #{likes.length}
