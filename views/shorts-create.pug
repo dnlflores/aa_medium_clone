@@ -3,8 +3,8 @@ include utils
 block head 
     link(rel='stylesheet' href='/stylesheets/shorts-create.css')
 block content
+    h2 Create a short:
     div#form-div
-        h2 Create a short:
         +validationErrorSummary(errors)
         form(action=`/shorts/create` method='post' id='short-form')
             input(type='hidden' name='_csrf' value=csrfToken)
