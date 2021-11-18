@@ -67,14 +67,6 @@
     left: 10%;
 }
 
-#background-div {
-    position: fixed;
-    width: 100%;
-    height: 88px;
-    background-color: #7CA27F;
-    z-index: 100;
-}
-
 #create-short {
     position: relative;
 }
