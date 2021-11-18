@@ -81,7 +81,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     const short = await Short.findByPk(shortId);
     const user = await User.findByPk(short.userId);
     let browserId = 0;
-    if(req.session.auth) browerId = req.session.auth.userId;
+    if(req.session.auth) browserId = req.session.auth.userId;
     const comments = await Comment.findAll({
         where: { shortId },
         include: [{ model: User, attributes: ['username'] }],
@@ -99,7 +99,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
             userId: browserId
         }
     });
-
+    
     res.render('short-page', {
         title: short.title,
         short,
