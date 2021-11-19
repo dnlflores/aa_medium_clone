@@ -100,7 +100,9 @@
     left: 4px;
 }
 
+
+
 #shorts-blur {
     min-height: 100vh;
     overflow-y: scroll;
-}
+} 
