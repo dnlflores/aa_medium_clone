@@ -27,10 +27,13 @@ body {
     text-decoration: none;
     border: 3px solid rgba(172, 177, 175, 255);
     border-radius: 10px;
+    background-color: #B3B5B2;
+    transition: all 250ms ease-in-out;
 }
 
 #start:hover {
     border-color: rgba(172, 188, 139, 255);
+    background-color: rgba(172, 188, 139, 255);
 }
 
 h1 {
@@ -47,10 +50,13 @@ h1 {
     text-decoration: none;
     border: 3px solid rgba(172, 177, 175, 255);
     border-radius: 10px;
+    transition: all 250ms ease-in-out;
+    background-color: #B3B5B2;
 }
 
 #profile a:hover {
     border-color: rgba(172, 188, 139, 255);
+    background-color: rgba(172, 188, 139, 255);
 }
 
 #logged-in-nav,

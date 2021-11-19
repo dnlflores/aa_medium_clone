@@ -107,3 +107,7 @@ h2, label, input, textarea {
 #submit-edit-button, #cancel-edit-button {
   color: #01523e
 }
+
+#welcome-user {
+  left: 15px;
+}
