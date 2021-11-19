@@ -31,7 +31,22 @@ Whether you are logged in or logged out you can view a users short and view the 
 ## Create Short Page
 ![create-short-page]
 
+When you are logged in you will be able to come to this page and creat a short. You just need a title and some content to tell your story. If you change your mind and don't want to create a short you can cancel and go back to the shorts page.
 
+## Edit Short Page
+![edit-short-page]
+
+When you are logged in and have created a short, you can edit your short. If you want to add more to the story or fix a simple spelling mistake, the edit page is there for you!
+
+## Login Page
+![login-page]
+
+If you have an account already you can use your login credentials to sign in to the shorts website! We have made error handlers to tell you if your credentials are wrong but don't worry we don't give too much info to prying eyes.
+
+## Register Page
+![register-page]
+
+If you are new to [Shorts][shorts] you can register here! All you need is a valid email, a unique username, a strong password with at least 1 Uppercase, 1 number, 1 special character and be at least 8 characters long.
 
 [shorts]: https://aa-gp7-shorts.herokuapp.com
 [home]: https://user-images.githubusercontent.com/18316229/142678211-49fcdd8b-caa4-4026-a010-9b224eb84bb0.png
@@ -39,5 +54,6 @@ Whether you are logged in or logged out you can view a users short and view the 
 [shorts-list-bottom]: https://user-images.githubusercontent.com/18316229/142689222-37c64373-6cee-459f-8bb1-fc016bb52365.png
 [short-page]: https://user-images.githubusercontent.com/18316229/142689239-23e90991-99b4-4891-af25-4b52110f7627.png
 [create-short-page]: https://user-images.githubusercontent.com/18316229/142689656-e7b99045-678b-4c21-8e3b-6f14a4761703.png
-
-
+[edit-short-page]: https://user-images.githubusercontent.com/18316229/142690030-36b2679f-3e9e-46c4-b563-794681f0d4ea.png
+[login-page]: https://user-images.githubusercontent.com/18316229/142690233-1d5a9058-c17c-4e5d-85c5-712295984cf7.png
+[register-page]: https://user-images.githubusercontent.com/18316229/142690253-95fc1500-ece2-4383-8f4f-e27cd0a9a28d.png
