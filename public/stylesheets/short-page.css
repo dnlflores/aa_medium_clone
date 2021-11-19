@@ -1,4 +1,4 @@
-html, body, #blur {
+html, body {
     min-height: 100%;
 }
 
@@ -16,37 +16,12 @@ body {
 }
 
 #blur {
-    width: 100%;
-    background-color: rgba(0, 0, 0, 30%);
+    height: 100vh;
 }
 
-/* #header {
-    position: absolute;
-    right: 50px;
-    top: 25px;
+#buffer {
+    height: 85px;
 }
-
-#header button {
-    color: rgba(172, 177, 175, 255);
-    padding: 10px;
-    font-size: 35px;
-    background: none;
-    border: 3px solid rgba(172, 177, 175, 255);
-    border-radius: 10px;
-}
-
-#header button:hover {
-    border-color: rgba(172, 188, 139, 255);
-}
-
-#header form {
-    margin-left: 10px;
-    display: inline;
-}
-
-#header span {
-    font-size: 30px;
-} */
 
 .grid {
     min-height: 100%;
@@ -233,4 +208,9 @@ button:hover {
 #register-button {
     position: relative;
     top: 20px;
+}
+
+#likeCount, #like-button, #unlike-button {
+    position: relative;
+    left: 175px;
 }

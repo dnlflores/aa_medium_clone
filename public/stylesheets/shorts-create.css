@@ -16,40 +16,6 @@ body {
     z-index: -1;
 }
 
-#blur {
-    width: 100%;
-    background-color: rgba(0, 0, 0, 30%);
-}
-
-/* #header {
-    position: absolute;
-    right: 50px;
-    top: 25px;
-} */
-
-/* #header button {
-    color: rgba(172, 177, 175, 255);
-    padding: 10px;
-    font-size: 35px;
-    background: none;
-    border: 3px solid rgba(172, 177, 175, 255);;
-    border-radius: 10px;
-}
-
-#header button:hover {
-    border-color: rgba(172, 188, 139, 255);
-}
-
-#header form {
-    margin-left: 10px;
-    display: inline;
-}
-
-#header span {
-    color: rgba(172, 177, 175, 255);
-    font-size: 30px;
-} */
-
 #form-div{
     background-color: rgba(87, 140, 126, 255);
     border-radius: 10px;
