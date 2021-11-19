@@ -1,0 +1,154 @@
+ body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: linear-gradient(35deg, rgba(172, 188, 139, 255), 50%, rgba(132, 164, 139, 255));
+  height: 100vh;
+  overflow: hidden;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 400px;
+  background: white;
+  border-radius: 10px;
+}
+h1{
+  text-align: center;
+  padding: 0 0 10px 0;
+  border-bottom: 1px solid silver;
+}
+
+.center form {
+  text-align: center;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+form .username {
+  position: relative;
+  border-bottom: 1px solid #adadad;
+  margin: 30px 0;
+}
+.username input{
+ width: 100%;
+ padding: 0 5px;
+ height: 40px;
+ font-size: 16px;
+ border: none;
+ background: none;
+ outline:none;
+}
+.username label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: #adadad;
+  transform: translateY(-200%);
+  font-size: 16px;
+  pointer-events: none;
+}
+form .email {
+  position: relative;
+  border-bottom: 1px solid #adadad;
+  margin: 30px 0;
+}
+.email input{
+ width: 100%;
+ padding: 0 5px;
+ height: 40px;
+ font-size: 16px;
+ border: none;
+ background: none;
+ outline:none;
+}
+.email label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: #adadad;
+  transform: translateY(-200%);
+  font-size: 16px;
+  pointer-events: none;
+}
+
+form .password {
+  position: relative;
+  border-bottom: 1px solid #adadad;
+  margin: 30px 0;
+}
+.password input{
+ width: 100%;
+ padding: 0 5px;
+ height: 40px;
+ font-size: 16px;
+ border: none;
+ background: none;
+ outline:none;
+}
+.password label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: #adadad;
+  transform: translateY(-200%);
+  font-size: 16px;
+  pointer-events: none;
+}
+
+form .confirmPassword {
+  position: relative;
+  border-bottom: 1px solid #adadad;
+  margin: 30px 0;
+}
+.confirmPassword input{
+ width: 100%;
+ padding: 0 5px;
+ height: 40px;
+ font-size: 16px;
+ border: none;
+ background: none;
+ outline:none;
+}
+.confirmPassword label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: #adadad;
+  transform: translateY(-200%);
+  font-size: 16px;
+  pointer-events: none;
+}
+
+button[type='submit']{
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+  background: linear-gradient(35deg, rgba(172, 188, 139, 255), 50%, rgba(132, 164, 139, 255));
+  border-radius: 25px;
+  font-size: 18px;
+  color: #e9f4fb;
+  cursor: pointer;
+  outline: none;
+  }
+
+  button[type='submit']:hover{
+    border-color:black;
+    transition: .3s;
+  }
+  .cancel-button {
+    margin: 10px 0;
+    text-align: center;
+    font-size: 16px;
+    color: #666666
+  }
+  .errors {
+    color: red;
+    text-align: center;
+  }
+  .errors li {
+    color: red;
+    font-size: 11px;
+  }

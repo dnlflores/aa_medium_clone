@@ -8,7 +8,7 @@ block content
     p#followers Followers: #{followers}
     p#followings Follows: #{followings}
     if locals.authenticated
-        if browserId !== profileUser.id
+        if userId !== profileUser.id
             if !follow
                 button(class=`follow ${profileUser.id}`) Follow
                 p#youFollow(hidden) You follow #{profileUser.username}!

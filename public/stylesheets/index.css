@@ -1,14 +1,24 @@
 
-html, body {
+html, body, #blur {
     height: 100%;
 }
 
-body {
+body, #blur {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+body {
     color: rgba(172, 177, 175, 255);
+    background-image: linear-gradient(to bottom right, rgba(172, 188, 139, 255), 30%, rgba(87, 140, 126, 255));
+    z-index: -1;
+}
+
+#blur {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 50%);
 }
 
 #start {
@@ -83,4 +93,8 @@ h1 {
 #register-button {
     top: 20px;
     position: relative;
+}
+
+#welcome-user {
+    left: 10px;
 }
