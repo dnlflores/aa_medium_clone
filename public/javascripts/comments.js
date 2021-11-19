@@ -57,7 +57,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 button.parentElement.remove();
             });
         });
-    }
+    };
 
     
 
@@ -68,18 +68,20 @@ window.addEventListener('DOMContentLoaded', () => {
                 skipCheck(button);
             }
         });
-    }
+    };
+
     function resetListeners() {
         addListeners();
         deleteListeners();
-    }
+    };
+
     function resetListenersAdd() {
         const editButtons = Array.from(document.querySelectorAll('.edit-comment'));
         editButtons.forEach( button => {
             skipCheck(button);
         });
         deleteListeners();
-    }
+    };
     
     resetListeners();
 

@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'shortId',
       onDelete: 'CASCADE',
       hooks: true
-    })
+    });
     Short.belongsTo(models.User, {
       foreignKey: 'userId'
     });
