@@ -20,6 +20,8 @@
     border-radius: 5px;
     z-index: 50;
     color: rgba(87, 140, 126, 255);
+    position: relative;
+    right: 0;
 }
 
 .short-title {
@@ -43,7 +45,6 @@
 .author-title {
     color: #B3B5B2;
     font-size: 15px;
-    margin-left: 10px;
 }
 
 .author-links {
@@ -58,8 +59,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    position: relative;
-    left: 450%;
+    position: fixed;
+    right: 0;
     z-index: 104;
 }
 
@@ -77,4 +78,8 @@
 
 #logout-button {
     bottom: 30px;
+}
+
+#blur {
+    height: 1000vh;
 }
