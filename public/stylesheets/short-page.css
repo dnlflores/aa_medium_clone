@@ -9,6 +9,10 @@ body, #blur {
     justify-content: center;
 }
 
+#blur {
+    overflow-y: hidden;
+}
+
 body {
     color: #01523e;
     background-image: linear-gradient(to bottom right, rgba(172, 188, 139, 255), 30%, rgba(87, 140, 126, 255));
