@@ -12,7 +12,6 @@ body, #blur {
 
 body {
     color: rgba(172, 177, 175, 255);
-    background-image: linear-gradient(to bottom right, rgba(172, 188, 139, 255), 30%, rgba(87, 140, 126, 255));
     z-index: -1;
 }
 
@@ -30,26 +29,6 @@ body {
 }
 
 #start:hover {
-    border-color: rgba(172, 188, 139, 255);
-}
-
-#login {
-    position: absolute;
-    right: 50px;
-    top: 50px;
-    
-}
-
-#login a {
-    padding: 10px;
-    font-size: 25px;
-    text-decoration: none;
-    border: 3px solid rgba(172, 177, 175, 255);
-    border-radius: 10px;
-    margin-left: 10px;
-}
-
-#login a:hover {
     border-color: rgba(172, 188, 139, 255);
 }
 
@@ -86,7 +65,7 @@ h1 {
 #logout-button {
     bottom:0;
     top: 40px;
-    right: 105px;
+    right: 95px;
 }
 
 #login-button, 
@@ -96,5 +75,5 @@ h1 {
 }
 
 #welcome-user {
-    left: 10px;
+    left: 11px;
 }

@@ -41,7 +41,7 @@ h1 {
 
 #logout-button:hover,
 #logout-button:focus {
-background: gray;
+background: #B3B5B2;
 }
 
 #login-button {
@@ -50,7 +50,7 @@ background: gray;
 
 #login-button:hover,
 #login-button:focus {
-background: gray;
+background: #B3B5B2;
 }
 
 #register-button {

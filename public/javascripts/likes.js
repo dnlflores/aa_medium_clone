@@ -4,7 +4,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const unlikeButton = unlikeButtons[0];
   const likeButton = likeButtons[0]; // grabbing first ele from array like button
   const likeCounter = document.getElementById('likeCount');
-  console.log(likeButton, unlikeButton);
   if (likeButton) {
     const shortId = likeButton.className.split(' ')[0]; //number
     likeButton.addEventListener('click', event => {
