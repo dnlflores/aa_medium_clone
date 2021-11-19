@@ -12,6 +12,11 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE',
       hooks: true
     });
+    Short.hasMany(models.Like, {
+      foreignKey: 'shortId',
+      onDelete: 'CASCADE',
+      hooks: true
+    })
     Short.belongsTo(models.User, {
       foreignKey: 'userId'
     });

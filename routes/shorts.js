@@ -117,6 +117,7 @@ router.delete('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
     const shortId = req.params.id;
     const short = await Short.findByPk(shortId);
     await short.destroy();
+    console.log('test');
     res.send();
 }));
 
