@@ -95,8 +95,9 @@ button:active {
 }
 
 body {
-  background: linear-gradient(to top left, #AABA7C, #7CA27F, #3C8870);
+  background: linear-gradient(to top left, #A9BA7B, #7BA27D, #3C8770);
   background-attachment: fixed;
+  background-color: rgba(0, 0, 0, .8);
 }
 
 html{

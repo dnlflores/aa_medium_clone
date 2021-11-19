@@ -33,8 +33,11 @@
     top: 0;
     font-size: 45px;
     text-align: center;
-    color: rgba(87, 140, 126, 255);
     z-index: 120;
+}
+
+#shorts-main-title, .short-title {
+    color: #3C8770;
 }
 
 .author-title {
