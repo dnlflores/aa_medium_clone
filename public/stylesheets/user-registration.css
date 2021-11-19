@@ -4,13 +4,20 @@
   height: 100vh;
 }
 
+#blur {
+  overflow-y: hidden;
+  background-color: transparent;
+}
+
 .center {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
   width: 400px;
   background: white;
   border-radius: 10px;
-  left: 33%;
-}
+ }
 
 h1{
   text-align: center;
