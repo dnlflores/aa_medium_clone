@@ -193,7 +193,8 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
       where: {userId: follow.followedId},
       attributes: ['title', 'content'],
       include: [{ model: User, attributes:['username'] }],
-      order: [['createdAt', 'DESC']]
+      order: [['createdAt', 'DESC']],
+      limit: 15,
     });
   });
 
