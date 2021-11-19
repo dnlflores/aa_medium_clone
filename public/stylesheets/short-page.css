@@ -52,10 +52,6 @@ body {
     margin-right: 10px;
 }
 
-.left-bar button {
-    padding: 10px;
-}
-
 .main-content {
     height: fit-content;
     grid-column-start: 2;
@@ -87,7 +83,7 @@ body {
     flex-direction: column;
     grid-column-start: 1;
     color: #01523e;
-    font-size: 25px;
+    align-items: center;
 }
 
 textarea {
@@ -125,7 +121,6 @@ pre {
 }
 
 #short-title {
-    /* margin-top: 120px; */
     font-size: 55px;
     margin-bottom: 15px;
     color: #01523e;
@@ -195,7 +190,7 @@ pre {
 
 #likeCount, #like-button, #unlike-button {
     position: relative;
-    left: 175px;
+    top: 100px;
 }
 
 .delete-page,
@@ -205,17 +200,16 @@ pre {
     color: #01523e;
 }
 
-#likeCount {
+/* #likeCount {
     position: relative;
     top: 120px;
-    font-size: 16px;
 }
 
 #like-button,
 #unlike-button {
     position: relative;
     top: 140px;
-}
+} */
 
 #author-link:hover {
     color: #AABA49;
