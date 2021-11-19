@@ -1,0 +1,31 @@
+
+#blur{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 90%;
+  min-height: 300px;
+  max-height: 500px;
+  background: white;
+  border-radius: 10px;
+  text-align: center;
+}
+
+h1 {
+color:black;
+}
+#youFollow {
+  color:#AABA49;
+}
+#followers {
+display: inline;
+}
+#folowings{
+  display: inline;
+}
+
+h2 {
+color:red;
+font-size: 30px;
+}
