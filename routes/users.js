@@ -176,7 +176,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
       followId: profileUser.id
     }
   });
-  
+
   if (req.session.auth) {
     userId = req.session.auth.userId;
   }
@@ -187,7 +187,20 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
       followedId: profileUser.id
     }
   });
-  
+
+  let followedShortsPromise = followings.map(async follow => {
+    return await Short.findAll({
+      where: {userId: follow.followedId},
+      attributes: ['title', 'content'],
+      include: [{ model: User, attributes:['username'] }],
+      order: [['createdAt', 'DESC']],
+      limit: 15,
+    });
+  });
+  let followedShorts = await Promise.resolve(followedShortsPromise[0]);
+  if(!followedShorts) followedShorts=[];
+  console.log(followedShorts, 'TESTTTTT')
+
   const follow = findFollow[0];
 
   res.render('profile-page', {
@@ -197,7 +210,8 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     userId,
     follow,
     followings: followings.length,
-    followers: followers.length
+    followers: followers.length,
+    followedShorts
   });
 }));
 

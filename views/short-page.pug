@@ -3,11 +3,9 @@ extends layout.pug
 append head
     link(rel='stylesheet' href='/stylesheets/short-page.css')
 
-append body 
-    div#buffer
-
 block content
-    div#buffer
+    if locals.authenticated
+        div#buffer
     div.grid
         div.main-content
             h1#short-title= short.title
@@ -22,8 +20,7 @@ block content
                         button.delete-page(id=`${short.id}`) Delete
         div.left-bar
             a(href='/shorts'): button#back-to-shorts-button Back to Shorts!
-            div
-                p#likeCount Likes: #{likes.length}
+            p#likeCount Likes: #{likes.length}
             if locals.authenticated
                 div
                     if !like
