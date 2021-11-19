@@ -102,6 +102,7 @@ body {
 #blur {
   width: 100%;
   background-color: rgba(0, 0, 0, 30%);
+  height: 100vh;
 }
 
 html{
