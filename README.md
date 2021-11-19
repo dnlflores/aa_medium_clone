@@ -87,13 +87,13 @@ Styling was a process that needed to be done carefully. Moving or adding element
 While we are proud of what we were able to accomplish during the time given to create this web application, there are a few features that will be implemented at a later time:
 
 - Likes to comments: while we were able to generate likes for shorts, likes to comments has yet to be introduced into the project.
-- 
+
 - Websockets: For our application to become even more dynamic, adding websockets would allow two clients to see updates made to the web application without refreshing at the same time.
-- 
+
 - Categories: In order for the user feed to become more relevant, adding categories would allow the application to give more meaningful shorts to the end user. This would be done by having filters available and users allowing to select preferred categories. 
 
-[eventListeners]: resources/Screenshot%from%2021-11-19%14-44-57.png 
-[associations]: resources/Screenshot%from%2021-11-19%14-39-15.png
+[eventListeners]: https://user-images.githubusercontent.com/18316229/142693352-a0513db7-e4df-45c9-8f31-1a513b190cd8.png
+[associations]: https://user-images.githubusercontent.com/18316229/142693311-954c38a5-574d-4e6e-a297-8aad9a0644f4.png
 [shorts]: https://aa-gp7-shorts.herokuapp.com
 [home]: https://user-images.githubusercontent.com/18316229/142678211-49fcdd8b-caa4-4026-a010-9b224eb84bb0.png
 [shorts-list-top]: https://user-images.githubusercontent.com/18316229/142688787-cbe6bb4c-2dab-4139-925c-c6ce4a64346e.png
