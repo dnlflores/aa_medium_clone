@@ -21,6 +21,14 @@ block content
                 if locals.authenticated
                     if short.userId === userId 
                         button.delete(id=`${short.id}`) Delete
+    if locals.authenticated
+        if userId === profileUser.id
+            h2 Followed Shorts:
+            each short in followedShorts
+                div 
+                    h3= short.title 
+                    pre= short.User.username 
+                    p(style='overflow:hidden; text-overflow:ellipsis; max-width: 300px;')= short.content
     div 
         a(href='/') Back to Home!
     if locals.authenticated

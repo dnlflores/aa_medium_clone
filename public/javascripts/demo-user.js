@@ -11,5 +11,4 @@ window.addEventListener('DOMContentLoaded', () => {
         const evt = new MouseEvent('click');
         login.dispatchEvent(evt);
     });
-
 });
