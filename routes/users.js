@@ -187,6 +187,18 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
       followedId: profileUser.id
     }
   });
+
+  let followedShortsPromise = followings.map(async follow => {
+    return await Short.findAll({
+      where: {userId: follow.followedId},
+      attributes: ['title', 'content'],
+      include: [{ model: User, attributes:['username'] }],
+      order: [['createdAt', 'DESC']]
+    });
+  });
+
+  const followedShorts = await Promise.resolve(followedShortsPromise[0]);
+  
   
   const follow = findFollow[0];
 
@@ -197,7 +209,8 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     userId,
     follow,
     followings: followings.length,
-    followers: followers.length
+    followers: followers.length,
+    followedShorts
   });
 }));
 
