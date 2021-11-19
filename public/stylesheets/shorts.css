@@ -100,6 +100,7 @@
     left: 4px;
 }
 
-#blur {
-    height: 1000vh;
+#shorts-blur {
+    min-height: 100vh;
+    overflow-y: scroll;
 }

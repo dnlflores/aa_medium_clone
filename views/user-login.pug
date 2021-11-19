@@ -22,10 +22,13 @@ block content
       div.password
         +field('Password', 'password', user.hashedPassword, 'password')
       div.login-button
-          button(type='submit') Login
+          button#login-button(type='submit') Login
+      div.login-button
+          button#demo-button(type='submit') Demo
       div.cancel-button
           a(href='/') Cancel
       div.need-an-account
         p: a(href='/users/register') Need an account? Sign Up
       div.back-to-home
         p: a(href='/') Back to Home!
+  script(src='/javascripts/demo-user.js')
