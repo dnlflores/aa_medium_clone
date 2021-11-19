@@ -23,9 +23,9 @@ block content
             if locals.authenticated
                 if userId === profileUser.id
                     div.switcher
-                        button#feedButton Feed
-                        button#myShortButton My Shorts
-            div.user-shorts-list.hidden
+                        a(href="#")#feedButton Feed
+                        a(href="#")#myShortButton My Shorts
+            div#user-shorts-list.hidden
                 h2#shorts-list-title #{profileUser.username}'s Shorts:
                 each short in shorts
                     div.short-div
@@ -33,7 +33,7 @@ block content
                             if locals.authenticated
                                 if short.userId === userId
                                     button.delete(id=`${short.id}`) Delete
-            div.feeds-shorts-list
+            div#feeds-shorts-list
                 if locals.authenticated
                     if userId === profileUser.id
                         h2 Followed Shorts:
