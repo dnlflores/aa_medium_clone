@@ -3,7 +3,7 @@ include utils
 append head 
     link(rel='stylesheet' href='/stylesheets/shorts-create.css')
 block content
-    h2 Create a short:
+    h2#create-short-title Create a Short:
     div#form-div
         +validationErrorSummary(errors)
         form(action=`/shorts/create` method='post' id='short-form')
