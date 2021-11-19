@@ -10,12 +10,6 @@ body, #blur {
     justify-content: center;
 }
 
-body {
-    color: rgba(172, 177, 175, 255);
-    background-image: linear-gradient(to bottom right, rgba(172, 188, 139, 255), 30%, rgba(87, 140, 126, 255));
-    z-index: -1;
-}
-
 #form-div{
     background-color: rgba(87, 140, 126, 255);
     border-radius: 10px;
@@ -24,7 +18,6 @@ body {
 }
 
 h2{
-    color: rgba(172, 177, 175, 255);
     font-size: 45px;
     margin-bottom: 25px;
     margin-top: 5px;
@@ -47,7 +40,7 @@ label {
 
 input {
     padding: 5px;
-    color: rgba(87, 140, 126, 255);
+    color: #01523e;
     border: 2px solid rgba(172,188,139,255);
     border-radius: 5px;
     width: 98%;
@@ -61,7 +54,7 @@ input:focus {
 }
 textarea {
     padding: 5px;
-    color: rgba(87, 140, 126, 255);
+    color: #01523e;
     border: 2px solid rgba(172,188,139,255);
     border-radius: 5px;
     width: 98%;
@@ -96,13 +89,16 @@ textarea:focus {
 
 #create-short-button,
 #cancel-short-button {
-    color: #B3B5B2
+    color: #01523e
 }
 
 #create-short-button:hover,
 #cancel-short-button:hover,
 #create-short-button:focus,
 #cancel-short-button:focus {
-    color: gray;
+    color: #01523e;
 }
 
+#create-short-title {
+    color: #01523e;
+}
