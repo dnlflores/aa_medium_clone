@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const cancelAdd = document.querySelector('.cancel-add');
 
     cancelAdd.addEventListener('click', () => {
-        document.querySelector('#content').value = '';
+        document.querySelector('#add-content').value = '';
         addSection.setAttribute('style', 'visibility: hidden; height: 0px;');
     });
 
@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', () => {
     
     submitAdd.addEventListener('click', async () => {
         const commentSection = document.querySelector('.comment-section');
-        const precontent = document.querySelector('#content').value;
+        const precontent = document.querySelector('#add-content').value;
         const content = new URLSearchParams({
             content: precontent
         })
@@ -41,8 +41,8 @@ window.addEventListener('DOMContentLoaded', () => {
             <button id='delete-${commentId}' class='delete-comment'> Delete </button>
         </div>`;
         
-        resetListeners();
-        document.querySelector('#content').value = '';
+        resetListenersAdd();
+        document.querySelector('#add-content').value = '';
         addSection.setAttribute('style', 'visibility: hidden; height: 0px;');
     });
 
@@ -65,60 +65,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const editButtons = Array.from(document.querySelectorAll('.edit-comment'));
         editButtons.forEach( button => {
             if(button.getAttribute('listener') !== 'true') {
-                button.setAttribute('listener', 'true');
-                button.addEventListener('click', async function editFunc(event) {
-                    button.setAttribute('listener', 'false');
-                    const id = button.id.slice(5);
-                    
-                    button.parentElement.innerHTML += `
-                        <div id='edit-div-${id}'>
-                            <label for='content'> Content </label>
-                            <textarea id='edit-content-${id}', name='content', rows=3, cols=30></textarea>
-                            <button id='edit-submit-${id}'> Submit </button>
-                            <button id='edit-cancel-${id}'> Cancel </button>
-                        </div>
-                    `;
-        
-                    const editSubmit = document.querySelector(`#edit-submit-${id}`)
-                    const editCancel = document.querySelector(`#edit-cancel-${id}`)
-                    const editDiv = document.querySelector(`#edit-div-${id}`)
-        
-                    editSubmit.addEventListener('click', async () => {
-                        const precontent = document.querySelector(`#edit-content-${id}`).value;
-                        const content = new URLSearchParams({
-                            content: precontent
-                        })
-                        
-                        const response = await fetch(`/comments/${id}`, {
-                            method: 'PUT',
-                            body: content
-                        });
-            
-                        
-                        let resContent = await response.text();
-                        resContent = JSON.parse(resContent)
-                        const username = resContent.username;
-        
-                        editDiv.parentElement.innerHTML = 
-                        `<div>
-                            <p>${username}</p>
-                            <pre>${precontent}</pre>
-                            <button id='edit-${id}' class='edit-comment'> Edit </button>
-                            <button id='delete-${id}' class='delete-comment'> Delete </button>
-                        </div>`;
-                        
-                        resetListeners();
-                        editDiv.remove();
-        
-                    })
-    
-                    editCancel.addEventListener('click', () => {
-                        
-                        resetListeners();
-                        editDiv.remove();
-                    });
-                    
-                });
+                skipCheck(button);
             }
         });
     }
@@ -126,7 +73,72 @@ window.addEventListener('DOMContentLoaded', () => {
         addListeners();
         deleteListeners();
     }
+    function resetListenersAdd() {
+        const editButtons = Array.from(document.querySelectorAll('.edit-comment'));
+        editButtons.forEach( button => {
+            skipCheck(button);
+        });
+        deleteListeners();
+    }
     
     resetListeners();
+
+    function skipCheck(button) {
+
+        button.setAttribute('listener', 'true');
+        button.addEventListener('click', async function editFunc(event) {
+            button.setAttribute('listener', 'false');
+            const id = button.id.slice(5);
+            
+            button.parentElement.innerHTML += `
+                <div id='edit-div-${id}'>
+                    <label for='content'> Content </label>
+                    <textarea id='edit-content-${id}', name='content', rows=3, cols=30></textarea>
+                    <button id='edit-submit-${id}'> Submit </button>
+                    <button id='edit-cancel-${id}'> Cancel </button>
+                </div>
+            `;
+
+            const editSubmit = document.querySelector(`#edit-submit-${id}`)
+            const editCancel = document.querySelector(`#edit-cancel-${id}`)
+            const editDiv = document.querySelector(`#edit-div-${id}`)
+
+            editSubmit.addEventListener('click', async () => {
+                const precontent = document.querySelector(`#edit-content-${id}`).value;
+                const content = new URLSearchParams({
+                    content: precontent
+                })
+                
+                const response = await fetch(`/comments/${id}`, {
+                    method: 'PUT',
+                    body: content
+                });
+    
+                
+                let resContent = await response.text();
+                resContent = JSON.parse(resContent)
+                const username = resContent.username;
+
+                editDiv.parentElement.innerHTML = 
+                `
+                    <p>${username}</p>
+                    <pre>${precontent}</pre>
+                    <button id='edit-${id}' class='edit-comment'> Edit </button>
+                    <button id='delete-${id}' class='delete-comment'> Delete </button>
+                `;
+                
+                resetListeners();
+                editDiv.remove();
+
+            })
+
+            editCancel.addEventListener('click', () => {
+                
+                resetListeners();
+                editDiv.remove();
+            });
+            
+        });
+    }
 
 });
