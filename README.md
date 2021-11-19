@@ -75,6 +75,8 @@ A key part of how the app works is it’s database. In order for the queries to 
 
 ### Event listeners
 
+![eventListeners]
+
 Event listeners are also a very important part of the apps functionality. It was important that the buttons continued to have listeners so that they would not lose functionality. This was of a particular concern with comments where new buttons were always being created. Proper checks had to be performed to ensure that elements were not assigned an event listeners more than once, leading to potentially buggy code.
 The skipCheck function allowed certain events to start the function from within the if statement. This was important to be sure that when all event listeners needed to be reassigned it could do so.
 
