@@ -2,8 +2,11 @@ extends layout
 
 include utils.pug
 
-block content
+append head  
   link(rel='stylesheet' href='/stylesheets/user-registration.css')
+
+block content
+  div#buffer
   div.center
     h1 Register
     +validationErrorSummary(errors)
