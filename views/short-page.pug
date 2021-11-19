@@ -3,10 +3,6 @@ extends layout.pug
 append head
     link(rel='stylesheet' href='/stylesheets/short-page.css')
 
-append body 
-    if locals.authenticated
-        div#buffer
-
 block content
     if locals.authenticated
         div#buffer
