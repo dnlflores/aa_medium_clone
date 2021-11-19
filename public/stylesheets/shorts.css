@@ -39,20 +39,20 @@
 }
 
 #shorts-main-title, .short-title {
-    color: #3C8770;
+    color: #01523e;
 }
 
 .author-title {
-    color: #B3B5B2;
     font-size: 15px;
 }
 
 .author-links {
     text-decoration: none;
+    color: #B3B5B2;
 }
 
 .delete-short-buttons {
-    color: green;
+    color: red;
 }
 
 #right {

@@ -6,7 +6,7 @@
 h1, h2, h3, h4, h5, h6, a, ol, li, ul, div, span,
 body, header, nav {
   font-size: 1rem;
-  color: inherit;
+  color: #01523e;
   background-color: transparent;
   margin: 0;
   padding: 0;
@@ -36,7 +36,7 @@ h1 {
 
 #logout-button {
   position: relative;
-  color: #B3B5B2;
+  color: #01523e;
 }
 
 #logout-button:hover,
@@ -45,7 +45,7 @@ background: gray;
 }
 
 #login-button {
-  color: #B3B5B2;
+  color: #01523e;
 }
 
 #login-button:hover,
@@ -54,7 +54,7 @@ background: gray;
 }
 
 #register-button {
-  color: #B3B5B2;
+  color: #01523e;
 }
 
 #register-button:hover,
@@ -64,7 +64,7 @@ background: gray;
 
 #welcome-user {
   font-size: 20px;
-  color: #AABA7C;
+  color: #AABA49;
   position: relative;
   bottom: 10px;
 }
@@ -76,7 +76,7 @@ button {
   margin: 0;
   text-decoration: none;
   background: transparent;
-  color: gray;
+  color: #01523e;
   font-size: 1rem;
   cursor: pointer;
   text-align: center;

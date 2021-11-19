@@ -10,7 +10,7 @@ body, #blur {
 }
 
 body {
-    color: rgba(172, 177, 175, 255);
+    color: #01523e;
     background-image: linear-gradient(to bottom right, rgba(172, 188, 139, 255), 30%, rgba(87, 140, 126, 255));
     z-index: -1;
 }
@@ -31,7 +31,7 @@ body {
 .right-bar {
     margin-top: 150px;
     grid-column-start: 3;
-    color: rgba(172, 177, 175, 255);
+    color: #01523e;
 }
 
 .right-bar button {
@@ -72,6 +72,7 @@ body {
 
 .main-content p {
     text-decoration: underline;
+    color: #01523e;
 }
 
 .main-content div {
@@ -83,7 +84,7 @@ body {
     flex-direction: column;
     align-items: end;
     grid-column-start: 1;
-    color: rgba(172, 177, 175, 255);
+    color: #01523e;
     font-size: 25px;
 }
 
@@ -128,7 +129,7 @@ pre {
 #short-title {
     font-size: 55px;
     margin-bottom: 15px;
-    color: #3C8870;
+    color: #01523e;
 }
 
 #edit-options {
@@ -158,14 +159,6 @@ pre {
     right: 95px;
 }
 
-button {
-    color: #B3B5B2;
-}
-
-button:hover {
-    background-color: gray;
-}
-
 #back-to-shorts-button {
     position: fixed;
     top: 20px;
@@ -182,22 +175,17 @@ button:hover {
 }
 
 #by-text, #author-link, #content {
-    color: #B3B5B2;
+    color: #01523e;
 }
 
 #add-comment {
     position: relative;
     bottom: 40px;
-    color: gray;
+    color: #01523e;
 }
 
 #back-to-shorts-button {
-    color: gray;
-}
-
-#add-comment:hover,
-#back-to-shorts-button:hover {
-    background-color: #B3B5B2;
+    color: #01523e;
 }
 
 #login-button,
@@ -209,4 +197,11 @@ button:hover {
 #likeCount, #like-button, #unlike-button {
     position: relative;
     left: 175px;
+}
+
+.delete-page,
+#like-button,
+#unlike-button,
+#edit-short-button {
+    color: #01523e;
 }
