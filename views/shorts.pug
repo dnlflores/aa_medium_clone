@@ -23,21 +23,20 @@ block body
                 li: a(href='/'): button#back-to-home Back to Home!
         
 block content
-    div#shorts-blur
-        div#buffer
-        h1#shorts-main-title Shorts!
-        div#short-list-container
-            div#shorts-list-div
-                each short in shorts
-                    div.short(id=`short-div-${short.id}`)
-                        h2: a.short-title(href=`/shorts/${short.id}`)= short.title 
-                        div.short-author
-                            +getUsername(short.userId, users)
-                        div.short-buttons
-                            div.delete-short
-                                if locals.authenticated
-                                    if short.userId === userId  
-                                        button.delete-short-buttons(id=`${short.id}`) Delete
+    div#buffer
+    h1#shorts-main-title Shorts!
+    div#short-list-container
+        div#shorts-list-div
+            each short in shorts
+                div.short(id=`short-div-${short.id}`)
+                    h2: a.short-title(href=`/shorts/${short.id}`)= short.title 
+                    div.short-author
+                        +getUsername(short.userId, users)
+                    div.short-buttons
+                        div.delete-short
+                            if locals.authenticated
+                                if short.userId === userId  
+                                    button.delete-short-buttons(id=`${short.id}`) Delete
 
 
     
