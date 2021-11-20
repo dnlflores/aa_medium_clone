@@ -202,8 +202,6 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
 
   const follow = findFollow[0];
 
-  console.log("TESTING SHORT ID", followedShorts[0].User.id);
-
   res.render('profile-page', {
     title: `${profileUser.username} Profile Page`,
     profileUser,
