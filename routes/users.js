@@ -188,16 +188,29 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     }
   });
 
-  let followedShortsPromise = followings.map(async follow => {
-    return await Short.findAll({
-      where: { userId: follow.followedId },
-      attributes: ['title', 'content'],
-      include: [{ model: User, attributes: ['username', 'id'] }],
-      order: [['createdAt', 'DESC']],
-      limit: 15,
+  const getPromises = (followings) => {
+    let followedShortsPromise = followings.map(async follow => {
+      return await Short.findAll({
+        where: { userId: follow.followedId },
+        attributes: ['title', 'content', 'createdAt'],
+        include: [{ model: User, attributes: ['username', 'id'] }],
+        order: [['createdAt', 'DESC']],
+      });
     });
-  });
-  let followedShorts = await Promise.resolve(followedShortsPromise[0]);
+    return followedShortsPromise;
+  };
+
+  let followedShortsUnresolved = await getPromises(followings);
+
+  const followedShorts = [];
+
+  for(let i = 0; i < followedShortsUnresolved.length; i++) {
+    const shorts = await Promise.resolve(followedShortsUnresolved[i])
+    followedShorts.push(...shorts)
+  }
+  
+  followedShorts.sort((a, b) => (a.createdAt > b.createdAt) ? -1 : 1)
+  
   if (!followedShorts) followedShorts = [];
 
   const follow = findFollow[0];
@@ -210,7 +223,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     follow,
     followings: followings.length,
     followers: followers.length,
-    followedShorts
+    followedShorts: followedShorts.slice(0, 15),
   });
 }));
 

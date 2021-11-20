@@ -9,14 +9,33 @@ window.addEventListener('DOMContentLoaded', () => {
     socket.onmessage = (msg) => {
         console.log('a message has been recieved');
         console.log(msg.data)
-        const newComment = msg.data.split(':');
-        commentSection.innerHTML += 
-        `<div>
-        <p>${newComment[0]}</p>
-        <pre>${newComment[1]}</pre>
-        <button id='edit-${newComment[2]}' class='edit-comment'> Edit </button>
-        <button id='delete-${newComment[2]}' class='delete-comment'> Delete </button>
-        </div>`;
+        const comment = msg.data.split(':');
+
+        if(comment[3] === 'new') {
+            commentSection.innerHTML += 
+            `<div>
+            <p>${comment[0]}</p>
+            <pre>${comment[1]}</pre>
+            <button id='edit-${comment[2]}' class='edit-comment'> Edit </button>
+            <button id='delete-${comment[2]}' class='delete-comment'> Delete </button>
+            </div>`;
+            resetListenersAdd();
+        } else if(comment[3] === 'edit') {
+
+            const editDiv = document.getElementById(`${comment[2]}`)
+    
+            editDiv.innerHTML = 
+            `
+                <p>${comment[0]}</p>
+                <pre>${comment[1]}</pre>
+                <button id='edit-${comment[2]}' class='edit-comment'> Edit </button>
+                <button id='delete-${comment[2]}' class='delete-comment'> Delete </button>
+            `;
+            
+            resetListeners();
+        }
+
+
     }
     
     
@@ -57,8 +76,8 @@ window.addEventListener('DOMContentLoaded', () => {
         // <button id='delete-${commentId}' class='delete-comment'> Delete </button>
         // </div>`;
         
-        socket.send(`${username}:${precontent}:${commentId}`);
-        resetListenersAdd();
+        socket.send(`${username}:${precontent}:${commentId}:new`);
+        
         document.querySelector('#add-content').value = '';
         addSection.setAttribute('style', 'visibility: hidden; height: 0px;');
     });
@@ -120,7 +139,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             const editSubmit = document.querySelector(`#edit-submit-${id}`)
             const editCancel = document.querySelector(`#edit-cancel-${id}`)
-            const editDiv = document.querySelector(`#edit-div-${id}`)
+            // const editDiv = document.querySelector(`#edit-div-${id}`)
 
             editSubmit.addEventListener('click', async () => {
                 const precontent = document.querySelector(`#edit-content-${id}`).value;
@@ -138,16 +157,18 @@ window.addEventListener('DOMContentLoaded', () => {
                 resContent = JSON.parse(resContent)
                 const username = resContent.username;
 
-                editDiv.parentElement.innerHTML = 
-                `
-                    <p>${username}</p>
-                    <pre>${precontent}</pre>
-                    <button id='edit-${id}' class='edit-comment'> Edit </button>
-                    <button id='delete-${id}' class='delete-comment'> Delete </button>
-                `;
+                socket.send(`${username}:${precontent}:${id}:edit`);
+
+                // editDiv.parentElement.innerHTML = 
+                // `
+                //     <p>${username}</p>
+                //     <pre>${precontent}</pre>
+                //     <button id='edit-${id}' class='edit-comment'> Edit </button>
+                //     <button id='delete-${id}' class='delete-comment'> Delete </button>
+                // `;
                 
-                resetListeners();
-                editDiv.remove();
+                // resetListeners();
+                // editDiv.remove();
 
             })
 

@@ -9,7 +9,7 @@ div.add-section(style='visibility: hidden; height: 0px;')
 div.comment-section
     for comment in comments 
         if comment
-            div 
+            div(id=`${comment.id}`) 
                 p= comment.User.username
                 pre= comment.content
                 if locals.authenticated
