@@ -4,7 +4,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const addComment = document.querySelector('#add-comment');
     const addSection = document.querySelector('.add-section');
 
-    const socket = new WebSocket('ws://localhost:5000/comments');
+    const socket = new WebSocket('ws://aa-gp7-shorts.herokuapp.com/comments');
 
     socket.onmessage = (msg) => {
         console.log('a message has been recieved');
