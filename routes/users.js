@@ -188,21 +188,29 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     }
   });
 
-  let followedShortsPromise = followings.map(async follow => {
-    return await Short.findAll({
-      where: { userId: follow.followedId },
-      attributes: ['title', 'content'],
-      include: [{ model: User, attributes: ['username', 'id'] }],
-      order: [['createdAt', 'DESC']],
-      limit: 15,
+  const getPromises = (followings) => {
+    let followedShortsPromise = followings.map(async follow => {
+      return await Short.findAll({
+        where: { userId: follow.followedId },
+        attributes: ['title', 'content'],
+        include: [{ model: User, attributes: ['username', 'id'] }],
+        order: [['createdAt', 'DESC']],
+      });
     });
-  });
-  let followedShorts = await Promise.resolve(followedShortsPromise[0]);
+    return followedShortsPromise;
+  };
+  
+  let followedShortsUnresolved = await getPromises(followings);
+
+  const followedShorts = [];
+  for(let i = 0; i < followedShortsUnresolved.length; i++) {
+    const shorts = await Promise.resolve(followedShortsUnresolved[i])
+    followedShorts.push(...shorts)
+  }
+  
   if (!followedShorts) followedShorts = [];
 
   const follow = findFollow[0];
-
-  console.log("TESTING SHORT ID", followedShorts[0].User.id);
 
   res.render('profile-page', {
     title: `${profileUser.username} Profile Page`,
@@ -212,7 +220,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     follow,
     followings: followings.length,
     followers: followers.length,
-    followedShorts
+    followedShorts: followedShorts.slice(0, 15),
   });
 }));
 
