@@ -6,15 +6,16 @@ const logger = require('morgan');
 const { sequelize } = require('./db/models');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const { secret } = require('./config');
+const { restoreUser } = require('./auth');
+
+const app = express();
+const expressWs = require('express-ws')(app);
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const shortsRouter = require('./routes/shorts');
 const commentsRouter = require('./routes/comments');
-const { secret } = require('./config')
-const { restoreUser } = require('./auth')
-
-const app = express();
-
 // view engine setup
 app.set('view engine', 'pug');
 

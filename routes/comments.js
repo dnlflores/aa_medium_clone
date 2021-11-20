@@ -8,6 +8,24 @@ const { requireAuth } = require('../auth');
 
 const router = express.Router();
 
+const clients = [];
+
+router.ws('/', async (ws, req) => {
+    const connection = ws;
+    clients.push(connection);
+
+    ws.on('message', function(data) {
+        console.log('message from client recieved');
+    });
+
+    connection.on('message', function(data) {
+            //broadcast the message to all the clients
+        clients.forEach(function(client) {
+            client.send(data);
+        });
+    });
+    //ws.send('hello from server');
+});
 
 router.put('/:id(\\d+)', requireAuth, asyncHandler(async (req, res, next) => {
     

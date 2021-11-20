@@ -1,23 +1,39 @@
 window.addEventListener('DOMContentLoaded', () => {
+    const commentSection = document.querySelector('.comment-section');
 
     const addComment = document.querySelector('#add-comment');
     const addSection = document.querySelector('.add-section');
 
+    const socket = new WebSocket('ws://localhost:5000/comments');
+
+    socket.onmessage = (msg) => {
+        console.log('a message has been recieved');
+        console.log(msg.data)
+        const newComment = msg.data.split(':');
+        commentSection.innerHTML += 
+        `<div>
+        <p>${newComment[0]}</p>
+        <pre>${newComment[1]}</pre>
+        <button id='edit-${newComment[2]}' class='edit-comment'> Edit </button>
+        <button id='delete-${newComment[2]}' class='delete-comment'> Delete </button>
+        </div>`;
+    }
+    
+    
     addComment.addEventListener('click', () => {
         addSection.setAttribute('style', 'visibility: visible');
     })
-
+    
     const cancelAdd = document.querySelector('.cancel-add');
-
+    
     cancelAdd.addEventListener('click', () => {
         document.querySelector('#add-content').value = '';
         addSection.setAttribute('style', 'visibility: hidden; height: 0px;');
     });
-
+    
     const submitAdd = document.querySelector('.submit-add');
     
     submitAdd.addEventListener('click', async () => {
-        const commentSection = document.querySelector('.comment-section');
         const precontent = document.querySelector('#add-content').value;
         const content = new URLSearchParams({
             content: precontent
@@ -27,25 +43,26 @@ window.addEventListener('DOMContentLoaded', () => {
             method: 'POST',
             body: content
         })
-
+        
         
         let resContent = await response.text();
         resContent = JSON.parse(resContent)
         const username = resContent.username;
         const commentId = resContent.commentId;
-        commentSection.innerHTML += 
-        `<div>
-            <p>${username}</p>
-            <pre>${precontent}</pre>
-            <button id='edit-${commentId}' class='edit-comment'> Edit </button>
-            <button id='delete-${commentId}' class='delete-comment'> Delete </button>
-        </div>`;
+        // commentSection.innerHTML += 
+        // `<div>
+        // <p>${username}</p>
+        // <pre>${precontent}</pre>
+        // <button id='edit-${commentId}' class='edit-comment'> Edit </button>
+        // <button id='delete-${commentId}' class='delete-comment'> Delete </button>
+        // </div>`;
         
+        socket.send(`${username}:${precontent}:${commentId}`);
         resetListenersAdd();
         document.querySelector('#add-content').value = '';
         addSection.setAttribute('style', 'visibility: hidden; height: 0px;');
     });
-
+    
     function deleteListeners() {
         const deleteButtons = Array.from(document.querySelectorAll('.delete-comment'));
         deleteButtons.forEach( button => {
