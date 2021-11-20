@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if(comment[3] === 'new') {
             commentSection.innerHTML += 
-            `<div>
+            `<div id=${comment[2]}>
             <p>${comment[0]}</p>
             <pre>${comment[1]}</pre>
             <button id='edit-${comment[2]}' class='edit-comment'> Edit </button>
@@ -21,9 +21,9 @@ window.addEventListener('DOMContentLoaded', () => {
             </div>`;
             resetListenersAdd();
         } else if(comment[3] === 'edit') {
-
+            
             const editDiv = document.getElementById(`${comment[2]}`)
-    
+            console.log(editDiv)
             editDiv.innerHTML = 
             `
                 <p>${comment[0]}</p>
