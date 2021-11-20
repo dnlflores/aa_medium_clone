@@ -25,14 +25,14 @@ window.addEventListener('DOMContentLoaded', () => {
             const editDiv = document.getElementById(`${comment[2]}`)
     
             editDiv.innerHTML = 
-                    `
-                        <p>${comment[0]}</p>
-                        <pre>${comment[1]}</pre>
-                        <button id='edit-${comment[2]}' class='edit-comment'> Edit </button>
-                        <button id='delete-${comment[2]}' class='delete-comment'> Delete </button>
-                    `;
-                    
-                    resetListeners();
+            `
+                <p>${comment[0]}</p>
+                <pre>${comment[1]}</pre>
+                <button id='edit-${comment[2]}' class='edit-comment'> Edit </button>
+                <button id='delete-${comment[2]}' class='delete-comment'> Delete </button>
+            `;
+            
+            resetListeners();
         }
 
 
