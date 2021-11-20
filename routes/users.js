@@ -192,7 +192,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
     let followedShortsPromise = followings.map(async follow => {
       return await Short.findAll({
         where: { userId: follow.followedId },
-        attributes: ['title', 'content', 'createdAt'],
+        attributes: ['id', 'title', 'content', 'createdAt'],
         include: [{ model: User, attributes: ['username', 'id'] }],
         order: [['createdAt', 'DESC']],
       });
