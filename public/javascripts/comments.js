@@ -139,7 +139,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             const editSubmit = document.querySelector(`#edit-submit-${id}`)
             const editCancel = document.querySelector(`#edit-cancel-${id}`)
-            // const editDiv = document.querySelector(`#edit-div-${id}`)
+            const editDiv = document.querySelector(`#edit-div-${id}`)
 
             editSubmit.addEventListener('click', async () => {
                 const precontent = document.querySelector(`#edit-content-${id}`).value;
@@ -169,6 +169,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 
                 // resetListeners();
                 // editDiv.remove();
+
+                resetListeners();
 
             })
 
