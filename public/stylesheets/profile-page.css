@@ -7,15 +7,14 @@ body {
 #followers, #followings{
   font-size: 16px;
 }
+
 #user-name-title {
   font-size: 40px;
-  /* display: flex;
-  align-items: flex-start;
-  justify-content: space-between; */
 }
+
 .profile-page{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 10px;
 }
 
@@ -23,30 +22,70 @@ h2 {
   font-size: 35px;
 }
 
-#user-shorts-list, .shorts-list-container, #feeds-shorts-list {
+.user-shorts-list-div, .shorts-list-container, .feeds-shorts-list-div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .switcher {
   width: 300px;
   display: flex;
   justify-content: space-evenly;
 }
-.hidden{
-  display:none;
-}
+
 #feedButton:hover, #myShortButton:hover {
-  color: #AABA49
+  color: #AABA49;
 }
-/* h1 {
-  position: absolute;
-  top: 35%;
-  width: 100%;
-  padding: 20px;
-  border-radius: 4px;
-  background:rgba(0,0,0,0.1);
+
+.short-div {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-} */
+  flex-direction: column;
+  align-items: center;
+  background-color: #7CA27F;
+  width: 400px;
+  margin: 5px;
+  border-radius: 5px;
+  height: 90px;
+}
+
+.short-div a, pre, p {
+  margin: 1px;
+}
+
+#welcome-user {
+  top: 5px;
+  left: 10px;
+}
+
+#logout-button {
+  position: relative;
+  top: 35px;
+  right: 120px;
+}
+
+#login-button, #register-button {
+  position: relative;
+  top: 15px;
+}
+
+#back-to-home {
+  position: fixed;
+  top: 20px;
+  z-index: 110;
+  right: 0;
+}
+
+.youFollow {
+  font-size: 20px;
+  margin-top: 10px;
+  color: #7CA27F;
+}
+
+.hidden {
+  display: none;
+}
+
+a:hover {
+  color: #AABA49;
+}

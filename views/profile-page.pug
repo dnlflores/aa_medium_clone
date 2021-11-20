@@ -12,33 +12,39 @@ block content
                     if userId !== profileUser.id
                         if !follow
                             button(class=`follow ${profileUser.id}`) Follow
-                            p#youFollow(hidden) You follow #{profileUser.username}!
+                            p.youFollow.hidden You follow #{profileUser.username}!
 
-                            button(class=`deleteFollow ${profileUser.id}` hidden) Unfollow
+                            button(class=`deleteFollow ${profileUser.id} hidden`) Unfollow
                         else
-                            button(class=`follow ${profileUser.id}` hidden) Follow
-                            p#youFollow You follow #{profileUser.username}!
+                            button(class=`follow ${profileUser.id} hidden`) Follow
+                            p.youFollow You follow #{profileUser.username}!
                             button(class=`deleteFollow ${profileUser.id}`) Unfollow
         div.shorts-list-container
             if locals.authenticated
                 if userId === profileUser.id
                     div.switcher
-                        a(href="#")#feedButton Feed
+                        a(href="#" style="color: #AABA49")#feedButton Feed
                         a(href="#")#myShortButton My Shorts
-            div#user-shorts-list.hidden
-                h2#shorts-list-title #{profileUser.username}'s Shorts:
-                each short in shorts
-                    div.short-div
-                        a#short-title(href=`/shorts/${short.id}`)= short.title
-                            if locals.authenticated
-                                if short.userId === userId
-                                    button.delete(id=`${short.id}`) Delete
-            div#feeds-shorts-list
-                if locals.authenticated
-                    if userId === profileUser.id
+                    div#user-shorts-list.hidden.user-shorts-list-div
+                        h2#shorts-list-title My Shorts:
+                        each short in shorts
+                            div.short-div
+                                a#short-title(href=`/shorts/${short.id}`)= short.title
+                                p(style='overflow:hidden; text-overflow:ellipsis; max-width: 300px; margin-top: 15px;')= short.content
+                else 
+                    div#user-shorts-list.user-shorts-list-div
+                        h2#shorts-list-title #{profileUser.username}'s Shorts:
+                        each short in shorts
+                            div.short-div
+                                a#short-title(href=`/shorts/${short.id}`)= short.title
+                                p(style='overflow:hidden; text-overflow:ellipsis; max-width: 300px; margin-top: 15px;')= short.content
+            if locals.authenticated
+                if userId === profileUser.id
+                    div#feeds-shorts-list.feeds-shorts-list-div
                         h2 Followed Shorts:
                         each short in followedShorts
-                            div
-                                h3= short.title
-                                pre= short.User.username
+                            div.short-div
+                                a#short-title(href=`/shorts/${short.id}`)= short.title
+                                a#author-link(href=`/users/${short.User.id}`): pre= short.User.username
                                 p(style='overflow:hidden; text-overflow:ellipsis; max-width: 300px;')= short.content
+    a(href='/'): button#back-to-home Back to Home!
