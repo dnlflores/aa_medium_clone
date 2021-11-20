@@ -89,3 +89,7 @@ h2 {
 a:hover {
   color: #AABA49;
 }
+
+#short-title {
+  font-size: 20px;
+}
