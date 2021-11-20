@@ -190,18 +190,19 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
 
   let followedShortsPromise = followings.map(async follow => {
     return await Short.findAll({
-      where: {userId: follow.followedId},
+      where: { userId: follow.followedId },
       attributes: ['title', 'content'],
-      include: [{ model: User, attributes:['username'] }],
+      include: [{ model: User, attributes: ['username', 'id'] }],
       order: [['createdAt', 'DESC']],
       limit: 15,
     });
   });
   let followedShorts = await Promise.resolve(followedShortsPromise[0]);
-  if(!followedShorts) followedShorts=[];
-  console.log(followedShorts, 'TESTTTTT')
+  if (!followedShorts) followedShorts = [];
 
   const follow = findFollow[0];
+
+  console.log("TESTING SHORT ID", followedShorts[0].User.id);
 
   res.render('profile-page', {
     title: `${profileUser.username} Profile Page`,
