@@ -27,12 +27,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // set up session middleware
 const store = new SequelizeStore({ db: sequelize });
 
-app.use(
+app.use( // creates session cookie as identifier
   session({
     secret,
     store,
-    saveUninitialized: false,
-    resave: false,
+    saveUninitialized: false, // prevent from saving empty session objects
+    resave: false, //helps prevent race condition, not all
   })
 );
 
