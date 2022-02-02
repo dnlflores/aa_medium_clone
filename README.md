@@ -3,7 +3,7 @@
 [Shorts][shorts]
 
 ## Summary
-[Shorts][shorts] is a multi-page web application inspired by Medium built with javascript, html and css using express and pug. Shorts allows users to :
+[Shorts][shorts] is a multi-page web application inspired by Medium built with JavaScript, HTML and CSS using express and pug. Shorts allows users to :
 
 * Create an account
 * Log in / Log out
